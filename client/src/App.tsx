@@ -6,7 +6,7 @@ function App() {
         <p className="bg-orange-100 shadow-md rounded-md px-4 py-3">
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <button className="btn btn-blue"> test </button>
+        <button className="header-btn"> Login </button>
     </div>
   )
 }
