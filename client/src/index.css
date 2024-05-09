@@ -3,15 +3,21 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 2em;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg text-white font-semibold shadow-md;
+  }
+}
+
+@layer utilities {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+
+  .btn-red {
+    @apply bg-red-500 hover:bg-red-600;
+  }
 }
