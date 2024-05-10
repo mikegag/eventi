@@ -1,13 +1,16 @@
 import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import LandingPage from "./pages/Landing"
+import Error from './pages/Error'
 
 function App() {
   return (
-    <div className="App">
-        <p className="bg-orange-100 shadow-md rounded-md px-4 py-3">
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <button className="header-btn"> Login </button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

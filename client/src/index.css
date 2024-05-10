@@ -3,21 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --main-color-green: #3e827b;
+  --main-color-green: #007e70;
   --main-color-yellow: #fdcd93;
   --main-color-lightgrey: #eee9e2;
   --accent-color-black: #132826;
   --accent-color-white: #fefdfb;
+  --accent-color-darkyellow: #f6b76c;
 }
 
 body {
   margin: 2em;
+  background: var(--main-color-green);
+  font-family: "Josefin Sans";
 }
 
 @layer components {
+  .header-container {
+    @apply flex flex-row;
+  }
   .header-btn {
-    @apply px-5 py-2 rounded-3xl bg-main-color-lightgrey text-accent-color-black text-sm 
-            border-accent-color-black border  hover:bg-main-color-yellow;
+    @apply px-5 py-1 rounded-2xl bg-main-color-lightgrey text-accent-color-black text-base font-semibold
+            border-accent-color-black border font-josefin cursor-pointer shadow-sm hover:bg-accent-color-darkyellow;
+  }
+  .main-title {
+    @apply text-accent-color-white;
+  }
+  .content-container {
+    @apply p-2 flex flex-col justify-center items-center ml-auto mr-auto mb-auto mt-40;
+  }
+  .footer-container {
+    @apply flex flex-row justify-center items-center m-auto mt-64 text-base text-accent-color-white;
   }
 }
 
@@ -25,8 +40,10 @@ body {
   .btn-blue {
     @apply bg-blue-200 hover:bg-blue-600;
   }
-
-  .btn-red {
-    @apply bg-red-500 hover:bg-red-600;
+  .landing-title {
+    @apply text-main-color-lightgrey text-6xl font-bold text-center;
+  }
+  .landing-subtitle {
+    @apply text-main-color-lightgrey text-2xl font-normal text-center mt-4 mb-11;
   }
 }

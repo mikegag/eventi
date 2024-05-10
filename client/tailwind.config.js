@@ -9,7 +9,11 @@ module.exports = {
         "main-color-lightgrey": "var(--main-color-lightgrey)",
         "accent-color-white": "var(--accent-color-white)",
         "accent-color-black": "var(--accent-color-black)",
+        "accent-color-darkyellow": "var(--accent-color-darkyellow)"
       },
+      fontFamily: {
+        josefin: ["Josefin Sans", "sans-serif"],
+      }
     },
   },
   plugins: [
