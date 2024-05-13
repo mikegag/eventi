@@ -28,11 +28,27 @@ body {
   .main-title {
     @apply text-accent-color-white;
   }
+  .page-title {
+    @apply text-4xl font-bold underline underline-offset-4 decoration-4 text-center text-main-color-lightgrey mt-16 mb-12;
+  }
   .content-container {
     @apply p-2 flex flex-col justify-center items-center ml-auto mr-auto mb-auto mt-40;
   }
   .footer-container {
     @apply flex flex-row justify-center items-center m-auto mt-64 text-base text-accent-color-white;
+  }
+  .form-label {
+    @apply block text-xl mt-5 mb-3 font-light leading-6 text-main-color-lightgrey;
+  }
+  .form-input {
+    @apply block w-full rounded-md border-0 px-3 py-2.5 text-accent-color-black shadow-sm ring-1 ring-inset
+         ring-gray-300 placeholder:text-gray-300 placeholder:text-base focus:ring-2 focus:ring-inset 
+           focus:ring-accent-color-darkyellow sm:text-base sm:leading-6;
+  }
+  .form-submit-btn {
+    @apply flex w-full justify-center rounded-md bg-main-color-yellow px-3 py-2.5 mt-16 text-xl font-semibold 
+           leading-6 text-accent-color-black shadow-sm hover:bg-accent-color-darkyellow focus-visible:outline 
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-color-darkyellow;
   }
 }
 

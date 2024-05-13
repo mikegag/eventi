@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import Form from "../components/Form"
 
 
 export default function Landing(){
@@ -15,6 +16,7 @@ export default function Landing(){
                 </button>
             </div>
             <Footer />
+            <Form useCase="login"/>
         </>
     )
 }
