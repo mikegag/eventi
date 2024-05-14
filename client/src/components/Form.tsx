@@ -2,6 +2,7 @@ import { IconDefinition, faEnvelope, faUser} from "@fortawesome/free-regular-svg
 import { faCreditCard, faFilePen, faLocationDot, faLock  } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
+import { Link } from "react-router-dom"
 
 interface FormProps {
         useCase: string
@@ -52,7 +53,7 @@ export default function Form({useCase}:FormProps){
 
     function determineUseCase(useCase:string):object{
         const formattedUseCase = useCase.replace(/\s+/g, '').toLowerCase()
-        
+        console.log(formattedUseCase)
         if(formattedUseCase === 'signup'){
             return formData.signup
         }
@@ -121,22 +122,26 @@ export default function Form({useCase}:FormProps){
 
             {formOutput.button === 'Login' ? (
                 <>
-                    <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey">
+                    <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
                         Don't have an account?{' '}
-                        <a href="#" className="leading-6 hover:text-accent-color-darkyellow underline">
-                            Sign Up
-                        </a>
+                        <Link to={'/signup'}>
+                            <p className="leading-6 hover:text-accent-color-darkyellow underline ml-2">
+                                Sign Up
+                            </p>
+                        </Link>
                     </p>
                 </>
             ) 
             : 
                 (formOutput.button === 'Sign Up' ? (
                     <>
-                        <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey">
+                        <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
                             Already have an account?{' '}
-                            <a href="#" className="leading-6 hover:text-accent-color-darkyellow underline">
-                                Login
-                            </a>
+                            <Link to={'/login'}>
+                                <p className="leading-6 hover:text-accent-color-darkyellow underline ml-2">
+                                    Login
+                                </p>
+                            </Link>
                         </p>
                     </>
                 )

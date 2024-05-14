@@ -3,11 +3,11 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Form from "../components/Form"
 
-export default function Login(){
+export default function SignUp(){
     return (
         <>
             <Header useCase="default"/>
-            <Form useCase="login"/>
+            <Form useCase="signup"/>
             <Footer />
         </>
     )

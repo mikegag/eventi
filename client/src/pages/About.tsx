@@ -5,7 +5,7 @@ import Footer from "../components/Footer"
 export default function About(){
     return (
         <>
-            <Header />
+            <Header useCase="default" />
             <h3 className="page-title">What is Eventi?</h3>
             <img 
                 src={require("../assets/couple-love.png")} 
