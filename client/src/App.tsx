@@ -6,6 +6,8 @@ import SignUp from './pages/Signup'
 import About from './pages/About'
 import Faqs from './pages/Faqs'
 import Error from './pages/Error'
+import Dashboard from './pages/Dashboard'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="about" element={<About />} />
         <Route path="faqs" element={<Faqs />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
