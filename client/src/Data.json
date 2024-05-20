@@ -34,13 +34,13 @@
         {
           "series": 1,
           "questions": [
-            { "id": 1, "text": "Select One Option:", "options": ["Give me a new date idea", "Recommend one from my date list"] }
+            { "id": 1, "text": "Select One Option:", "options": ["Give me a new date idea ✨", "Recommend one from my date list 📋"] }
           ]
         },
         {
           "series": 2,
           "questions": [
-            { "id": 2, "text": "Where Would You Like To Go?", "options": ["Somewhere close to me", "I'm feeling adventurous"] }
+            { "id": 2, "text": "Where Would You Like To Go?", "options": ["Somewhere close to me 📍", "I'm feeling adventurous 😎"] }
           ]
         },
         {
@@ -52,7 +52,7 @@
         {
           "series": 4,
           "questions": [
-            { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event", "Something chill"] }
+            { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event 🧩", "Something chill ☺️"] }
           ]
         }
       ]

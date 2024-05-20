@@ -65,17 +65,17 @@ export default function GenerateIdea() {
       <Header useCase="protected" />
       <div className="p-4">
         {questions[state.currentSeries].questions.map((question: Question) => (
-          <div key={question.id} className="flex flex-col justify-center">
-            <h3 className="text-2xl font-semibold text-main-color-lightgrey mx-auto text-center mt-14 mb-12">{question.text}</h3>
+          <div key={question.id} className="flex flex-col justify-center items-center">
+            <h3 className="text-3xl font-semibold text-main-color-lightgrey mx-auto text-center mt-14 mb-12">{question.text}</h3>
             {question.options.map((option, index) => (
-              <div key={option}>
+              <div key={option} >
                 <button onClick={() => handleAnswer(question.id, option)}>
                   <div className="card">
                     {option}
                   </div>
                 </button>
                 {index + 1 !== question.options.length ? (
-                  <p className="text-main-color-lightgrey text-lg my-6">Or </p>
+                  <p className="text-main-color-lightgrey text-lg my-6 mx-auto text-center">Or </p>
                 ) : null}
               </div>
             ))}
