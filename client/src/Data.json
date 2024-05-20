@@ -1,0 +1,60 @@
+{
+    "formData": {
+      "login": {
+        "title": "Hello Again!",
+        "ids": ["email", "password"],
+        "labels": ["Email", "Password"],
+        "types": ["email", "password"],
+        "placeholders": ["Enter your email", "Enter your password"],
+        "icons": ["faEnvelope", "faLock"],
+        "button": "Login"
+      },
+      "signup": {
+        "title": "Let's Get Started",
+        "ids": ["username", "email", "password"],
+        "labels": ["Username", "Email", "Password"],
+        "types": ["text", "email", "password"],
+        "placeholders": ["Enter your username", "Enter your email", "Enter your password"],
+        "icons": ["faUser", "faEnvelope", "faLock"],
+        "button": "Sign Up"
+      },
+      "date": {
+        "title": "Add Your Date Details",
+        "ids": ["location", "budget", "description"],
+        "labels": ["Location (City, Country)", "What's your budget?", "What will you do on the date?"],
+        "types": ["text", "select", "textarea"],
+        "placeholders": ["Enter your date location (City, Country)", "", "Enter your date description"],
+        "icons": ["faLocationDot", "faCreditCard", "faFilePen"],
+        "selectOptions": ["Select your budget", "$0-$20", "$40-$80", "$80 or more"],
+        "button": "Save"
+      }
+    },
+
+    "generateIdeaQuestions": [
+        {
+          "series": 1,
+          "questions": [
+            { "id": 1, "text": "Select One Option:", "options": ["Give me a new date idea", "Recommend one from my date list"] }
+          ]
+        },
+        {
+          "series": 2,
+          "questions": [
+            { "id": 2, "text": "Where Would You Like To Go?", "options": ["Somewhere close to me", "I'm feeling adventurous"] }
+          ]
+        },
+        {
+          "series": 3,
+          "questions": [
+            { "id": 3, "text": "How Much Would You Like To Spend?", "options": ["Keep it cheap!", "Less than $80", "I have no budget"] }
+          ]
+        },
+        {
+          "series": 4,
+          "questions": [
+            { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event", "Something chill"] }
+          ]
+        }
+      ]
+    }
+  

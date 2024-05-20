@@ -9,6 +9,7 @@ import Error from './pages/Error'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import AddIdea from './pages/AddIdea'
+import GenerateIdea from './pages/GenerateIdea'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />
         <Route path="add-idea" element={<AddIdea />} />
+        <Route path="generate-idea" element={<GenerateIdea />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

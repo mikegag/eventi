@@ -50,12 +50,14 @@ body {
            leading-6 text-accent-color-black shadow-sm hover:bg-accent-color-darkyellow focus-visible:outline 
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-color-darkyellow;
   }
+  .card {
+    @apply flex flex-row justify-center items-center text-2xl text-accent-color-black border-2 border-accent-color-black 
+            rounded-xl cursor-pointer bg-main-color-lightgrey px-12 py-12 w-fit hover:shadow-xl 
+            hover:border-accent-color-darkyellow;
+  }
 }
 
 @layer utilities {
-  .btn-blue {
-    @apply bg-blue-200 hover:bg-blue-600;
-  }
   .landing-title {
     @apply text-main-color-lightgrey text-6xl font-bold text-center;
   }
