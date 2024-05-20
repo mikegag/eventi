@@ -51,7 +51,7 @@ body {
            focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-color-darkyellow;
   }
   .card {
-    @apply flex flex-row justify-center items-center text-2xl text-accent-color-black border-2 border-accent-color-black 
+    @apply flex flex-row justify-center items-center mx-auto text-2xl text-accent-color-black border-2 border-accent-color-black 
             rounded-xl cursor-pointer bg-main-color-lightgrey px-12 py-12 w-fit hover:shadow-xl 
             hover:border-accent-color-darkyellow;
   }
