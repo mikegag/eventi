@@ -6,13 +6,14 @@
   --main-color-green: #007e70;
   --main-color-yellow: #fdcd93;
   --main-color-lightgrey: #eee9e2;
+  --accent-color-mediumgrey: #e5dfd6;
   --accent-color-black: #132826;
   --accent-color-white: #fefdfb;
   --accent-color-darkyellow: #f6b76c;
 }
 
 body {
-  margin: 2em;
+  padding: 2em;
   background: var(--main-color-green);
   font-family: "Josefin Sans";
 }
@@ -66,5 +67,27 @@ body {
   }
   .page-link {
     @apply flex justify-center items-center text-xl text-main-color-lightgrey mx-auto my-5 hover:text-accent-color-darkyellow;
+  }
+  .list-container {
+    @apply bg-main-color-lightgrey mx-auto rounded-lg px-3 py-2 md:w-10/12 lg:w-9/12 lg:text-lg lg:px-8 border-2 border-accent-color-black h-96 overflow-y-scroll;
+  }
+  .list-container::-webkit-scrollbar {
+    width: 16px;
+  }
+  .list-container::-webkit-scrollbar-track {
+    background: var(--main-color-lightgrey);
+    border-radius: 30px;
+  }
+  .list-container::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color-black);
+    border-radius: 10px;
+    border: 3px solid var(--main-color-lightgrey);
+  }
+  .list-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-color-darkyellow);
+    cursor: pointer;
+  }
+  .date-list-option {
+    @apply flex items-center justify-evenly py-4 my-2 border-b-2 border-accent-color-black hover:bg-accent-color-mediumgrey;
   }
 }

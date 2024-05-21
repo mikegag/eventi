@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import AddIdea from './pages/AddIdea'
 import GenerateIdea from './pages/GenerateIdea'
+import DateList from './pages/DateList'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="add-idea" element={<AddIdea />} />
         <Route path="generate-idea" element={<GenerateIdea />} />
+        <Route path="date-list" element={<DateList />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
