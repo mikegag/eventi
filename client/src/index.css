@@ -26,9 +26,6 @@ body {
     @apply px-5 py-1 rounded-2xl bg-main-color-lightgrey text-accent-color-black text-base font-semibold
             border-accent-color-black border font-josefin cursor-pointer shadow-sm hover:bg-accent-color-darkyellow;
   }
-  .main-title {
-    @apply text-accent-color-white;
-  }
   .page-title {
     @apply text-4xl font-bold underline underline-offset-4 decoration-4 text-center text-main-color-lightgrey mt-16 mb-12;
   }
