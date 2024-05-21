@@ -29,14 +29,14 @@ export default function Header({useCase}:HeaderProps){
         :
         (
             <div className="header-container">
-                <Link to={'/'} className="w-24 mt-auto mb-auto ml-0 mr-auto cursor-pointer">
+                <Link to={'/dashboard'} className="w-24 mt-auto mb-auto ml-0 mr-auto cursor-pointer">
                     <img 
                         src={require("../assets/eventi-logo-small.png")} 
                         role="button"
                         aria-label="eventi logo, spelled normally except 'v' is replaced with a heart and 'i' is replaced with a location dot symbol"
                     />
                 </Link>
-                <Link to={'/'} className="mt-auto mb-auto ml-auto mr-3 lg:mr-5">
+                <Link to={'/profile'} className="mt-auto mb-auto ml-auto mr-3 lg:mr-5">
                     <button 
                         className="header-btn"
                         aria-label="login button which redirects to login page"

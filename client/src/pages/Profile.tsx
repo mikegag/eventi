@@ -1,8 +1,10 @@
 import React from "react"
 import Header from "../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeftLong, faWrench } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
+import { faUser } from "@fortawesome/free-regular-svg-icons"
+import { Link } from "react-router-dom"
 
 export default function Profile(){
     const [open,setOpen] = useState(false)
@@ -10,14 +12,18 @@ export default function Profile(){
     return (
         <>
             <Header useCase="protected"/>
-            <FontAwesomeIcon icon={faArrowLeftLong} className="text-main-color-lightgrey mr-auto mt-12 text-4xl pl-1 cursor-pointer hover:text-accent-color-darkyellow"/>
-            <div className="flex flex-col justify-center items-center md:w-8/12 ml-auto mr-auto border-b-2 border-main-color-yellow text-main-color-lightgrey">
+            <Link to={'/dashboard'}>
+                <FontAwesomeIcon 
+                    icon={faArrowLeftLong} 
+                    className="text-main-color-lightgrey mr-auto mt-12 text-4xl pl-1 cursor-pointer hover:text-accent-color-darkyellow"
+                />
+            </Link>
+            <div className="profile-upper-container mb-16">
                 <img src={require('../assets/couple-love.png')} className="w-36 rounded-full border"/>
-                <h4 className="mt-8 mb-4 font-semibold text-2xl">Mark Plum</h4>
-                <p>mp4450</p>
-                <p className="mt-4 mb-6">markplum@gmail.com</p>
+                <h4 className="mt-8 mb-3 font-semibold text-3xl">Mark Plum</h4>
+                <p className="text-sm">Joined January 15, 2024</p>
             </div>  
-            <div className="mt-10 md:w-8/12 ml-auto mr-auto">
+            {/* <div className="mt-10 md:w-8/12 ml-auto mr-auto">
                 <form className="flex flex-col justify-center" action="#" method="POST">
                     <div className={`flex bg-main-color-lightgrey rounded-xl py-2 px-4 mb-10 ${open? 'bg-accent-color-white':''}`}>
                         <label htmlFor='partner' className="form-label text-main-color-green font-medium mt-auto mb-auto mr-3">
@@ -56,23 +62,33 @@ export default function Profile(){
                         /> 
                     </div>
                     {!open? (
-                    <button 
-                        className="ml-auto mr-auto bg-main-color-yellow text-accent-color-black font-medium cursor-pointer border-accent-color-black rounded-lg px-6 py-2 hover:bg-accent-color-darkyellow"
-                        onClick={(event) => {event.preventDefault(); setOpen(!open);}}
-                    >
-                        Edit
-                    </button>
+                        <button 
+                            className="profile-btn"
+                            onClick={(event) => {event.preventDefault(); setOpen(!open);}}
+                        >
+                            Edit
+                        </button>
                     ):(
-                    <button 
-                        className="ml-auto mr-auto bg-main-color-yellow text-accent-color-black font-medium cursor-pointer border-accent-color-black rounded-lg px-6 py-2 hover:bg-accent-color-darkyellow"
-                        onClick={(event) => {event.preventDefault(); setOpen(!open);}}
-                        type="submit"
-                    >
-                        Save
-                    </button>
+                        <button 
+                            className="profile-btn"
+                            onClick={(event) => {event.preventDefault(); setOpen(!open);}}
+                            type="submit"
+                        >
+                            Save
+                        </button>
                     )}
                 </form>
+            </div> */}
+            <div className="profile-section-link">
+                <FontAwesomeIcon icon={faUser} />
+                <p className="ml-5">Personal Information</p>
             </div>
+            <Link to={"/preferences"}>
+                <div className="profile-section-link">
+                    <FontAwesomeIcon icon={faWrench} />
+                    <p className="ml-5">Profile Preferences</p>
+                </div>
+            </Link>
         </>
     )
 }

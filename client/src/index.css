@@ -88,6 +88,18 @@ body {
     cursor: pointer;
   }
   .date-list-option {
-    @apply flex items-center justify-evenly py-4 my-2 border-b-2 border-accent-color-black hover:bg-accent-color-mediumgrey;
+    @apply flex items-center justify-evenly py-4 my-2 border-b-2 border-accent-color-black 
+           hover:bg-accent-color-mediumgrey;
+  }
+  .profile-btn {
+    @apply ml-auto mr-auto bg-main-color-yellow text-accent-color-black font-medium 
+           cursor-pointer border-accent-color-black rounded-lg px-6 py-2 hover:bg-accent-color-darkyellow;
+  }
+  .profile-upper-container {
+    @apply flex flex-col justify-center items-center md:w-8/12 ml-auto mr-auto text-main-color-lightgrey;
+  }
+  .profile-section-link {
+    @apply flex mx-auto justify-start text-main-color-lightgrey text-xl border-b-2 py-7 my-3 
+           cursor-pointer md:w-3/6 hover:text-accent-color-darkyellow hover:border-accent-color-darkyellow;
   }
 }
