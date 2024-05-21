@@ -64,4 +64,7 @@ body {
   .landing-subtitle {
     @apply text-main-color-lightgrey text-2xl font-normal text-center mt-4 mb-11;
   }
+  .page-link {
+    @apply flex justify-center items-center text-xl text-main-color-lightgrey mx-auto my-5 hover:text-accent-color-darkyellow;
+  }
 }
