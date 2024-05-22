@@ -12,6 +12,7 @@ import AddIdea from './pages/AddIdea'
 import GenerateIdea from './pages/GenerateIdea'
 import DateList from './pages/DateList'
 import ProfilePreferences from './pages/ProfilePreferences'
+import PersonalInformation from './pages/PersonalInfomation'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="generate-idea" element={<GenerateIdea />} />
         <Route path="date-list" element={<DateList />} />
         <Route path="profile-preferences" element={<ProfilePreferences />} />
+        <Route path="personal-information" element={<PersonalInformation />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

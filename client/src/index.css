@@ -43,6 +43,9 @@ body {
          ring-gray-300 placeholder:text-gray-300 placeholder:text-base focus:ring-2 focus:ring-inset 
            focus:ring-accent-color-darkyellow sm:text-base sm:leading-6;
   }
+  .form-input-alternative {
+    @apply bg-main-color-green text-main-color-lightgrey ring-0  border-0 border-b-2 border-main-color-lightgrey rounded-none;
+  }
   .form-submit-btn {
     @apply flex w-full justify-center rounded-md bg-main-color-yellow px-3 py-2.5 mt-16 text-xl font-semibold 
            leading-6 text-accent-color-black shadow-sm hover:bg-accent-color-darkyellow focus-visible:outline 
