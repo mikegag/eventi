@@ -45,7 +45,11 @@ export default function ProfilePreferences(){
                     type="text"
                     className="form-input"
                 />
+                <button type="submit" className="form-submit-btn w-fit mx-auto">
+                    edit
+                </button>
             </form>
+            
         </>
     )
 }
