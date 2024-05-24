@@ -25,7 +25,7 @@ export default function PersonalInformation(){
                     name="name"
                     type="text"
                     disabled 
-                    className="form-input-alternative"
+                    className="form-input-alternative mb-5"
                 />
                 <label htmlFor="username" className="form-label">
                     <FontAwesomeIcon icon={faSignature} className="mr-3"/>
@@ -35,7 +35,7 @@ export default function PersonalInformation(){
                     name="username"
                     type="text"
                     disabled 
-                    className="form-input-alternative"
+                    className="form-input-alternative mb-5"
                 />
                 <label htmlFor="email" className="form-label">
                     <FontAwesomeIcon icon={faEnvelope} className="mr-3"/>

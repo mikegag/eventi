@@ -10,6 +10,7 @@
   --accent-color-black: #132826;
   --accent-color-white: #fefdfb;
   --accent-color-darkyellow: #f6b76c;
+  --accent-color-darkgreen: #00584d;
 }
 
 body {
@@ -44,7 +45,8 @@ body {
            focus:ring-accent-color-darkyellow sm:text-base sm:leading-6;
   }
   .form-input-alternative {
-    @apply bg-main-color-green text-main-color-lightgrey ring-0  border-0 border-b-2 border-main-color-lightgrey rounded-none;
+    @apply bg-main-color-green text-main-color-lightgrey ring-0 border-0 border-b-2 border-main-color-lightgrey 
+            rounded-none sm:text-base sm:leading-6;
   }
   .form-submit-btn {
     @apply flex w-full justify-center rounded-md bg-main-color-yellow px-3 py-2.5 mt-16 text-xl font-semibold 
@@ -53,8 +55,8 @@ body {
   }
   .card {
     @apply flex flex-row justify-center items-center mx-auto text-2xl text-accent-color-black border-2 border-accent-color-black 
-            rounded-xl cursor-pointer bg-main-color-lightgrey px-12 py-10 w-fit hover:shadow-xl 
-            hover:border-accent-color-darkyellow;
+            rounded-xl cursor-pointer bg-main-color-lightgrey px-12 py-7 w-fit hover:shadow-xl 
+             hover:bg-main-color-yellow;
   }
 }
 

@@ -55,6 +55,24 @@
             { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event 🧩", "Something chill ☺️"] }
           ]
         }
-      ]
+      ],
+
+      "dashboardData": {
+        "generate": {
+          "route": "/generate-idea",
+          "title": "Generate Idea",
+          "icon": "faMartiniGlass"
+        },
+        "add": {
+          "route": "/add-idea",
+          "title": "Add Date Idea",
+          "icon": "faMagnifyingGlassPlus"
+        },
+        "list": {
+          "route": "/date-list",
+          "title": "View Date List",
+          "icon": "faClipboardList"
+        }
+      }
     }
   

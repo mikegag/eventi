@@ -10,7 +10,8 @@ module.exports = {
         "accent-color-mediumgrey": "var(--accent-color-mediumgrey)",
         "accent-color-white": "var(--accent-color-white)",
         "accent-color-black": "var(--accent-color-black)",
-        "accent-color-darkyellow": "var(--accent-color-darkyellow)"
+        "accent-color-darkyellow": "var(--accent-color-darkyellow)",
+        "accent-color-darkgreen": "var(--accent-color-darkgreen)"
       },
       fontFamily: {
         josefin: ["Josefin Sans", "sans-serif"],
