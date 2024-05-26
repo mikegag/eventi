@@ -6,7 +6,7 @@ import data from "../Data.json"
 interface CardProps {
     useCase: string,
     graphData: string,
-    readyToDisplay: (variable: boolean)=>void
+    readyToDisplay: (variable:boolean) => void
 }
 
 const iconMap: Record<string, IconDefinition> = {
@@ -19,8 +19,9 @@ export default function SmallButtonCard({useCase, graphData, readyToDisplay}:Car
     const [isClicked, setIsClicked] = useState<boolean>(false)
 
     function handleClick(){
-        setIsClicked(!isClicked)
-        readyToDisplay(isClicked)
+        const prev = !isClicked
+        setIsClicked(prev)
+        readyToDisplay(prev)
     }
 
     function getUseCaseInformation(givenCase:string){
@@ -38,9 +39,9 @@ export default function SmallButtonCard({useCase, graphData, readyToDisplay}:Car
     const cardData = getUseCaseInformation(useCase)
 
     return (
-        <div className="flex flex-col justify-start" onClick={handleClick} role="button">
+        <div className="flex flex-col justify-start bg-main-color-lightgrey px-8 py-2 rounded-xl mr-7" onClick={handleClick} role="button">
             <p className="text-sm my-2">
-                <FontAwesomeIcon icon={iconMap[cardData.icon]} className="mr-1 text-lg"/> 
+                <FontAwesomeIcon icon={iconMap[cardData.icon]} className="mr-2 text-lg"/> 
                 {cardData.title}
             </p>
             <h3 className="text-lg">{graphData}</h3>

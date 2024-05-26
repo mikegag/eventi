@@ -1,14 +1,22 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Header from "../components/Header"
 import DashboardCard from "../components/DashboardCard"
 import LargeButtonCard from "../components/LargeButtonCard"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLightbulb } from "@fortawesome/free-regular-svg-icons"
 import { faCalendar, faCompass } from "@fortawesome/free-solid-svg-icons"
+import SmallButtonCard from "../components/SmallButtonCard"
 
 
 export default function Dashboard(){
     const [readyToDisplay, setReadyToDisplay] = useState<boolean>(false)
+
+    //handles which graph should be displayed based on clicked SmallButtonCard
+    function displayData(data:boolean){
+        // implement data taken from smallbuttoncard
+        setReadyToDisplay(data)
+        console.log(readyToDisplay)
+    }
 
     function formatGraphData(){
         // implement data taken from smallbuttoncard
@@ -17,23 +25,20 @@ export default function Dashboard(){
     return (
         <>
             <Header useCase="protected"/>
-            <div className=" mx-auto">
-                <p className="mr-auto ml-0 mt-12 mb-10 text-3xl font-semibold text-main-color-lightgrey underline underline-offset-4">Hi, username</p>
+            <div className="mx-auto">
+                <p className="mr-auto ml-0 mt-14 mb-10 text-2xl font-semibold text-main-color-lightgrey underline underline-offset-4">Hi, username</p>
                 <div className="flex mb-6">
-                    <div className="flex flex-col justify-start bg-main-color-yellow px-8 py-2 rounded-xl mr-7 border-2 border-neutral-500">
-                        <p className="text-sm my-2"><FontAwesomeIcon icon={faLightbulb} className="mr-1 text-lg"/> Total Dates Created</p>
-                        <h3 className="text-lg">1200</h3>
-                    </div>
-                    <div className="flex flex-col justify-start bg-main-color-lightgrey px-8 py-2 rounded-xl mr-7">
-                        <p className="text-sm my-2"> <FontAwesomeIcon icon={faCompass} className="mr-1 text-lg"/> Most visited Area</p>
-                        <h3 className="text-lg">Toronto</h3>
-                    </div>
-                    <div className="flex flex-col justify-start bg-main-color-lightgrey px-8 py-2 rounded-xl mr-7">
-                        <p className="text-sm my-2"><FontAwesomeIcon icon={faCalendar} className="mr-1 text-lg"/> Last time you went on a date</p>
-                        <h3 className="text-lg">Monday, April 20, 2024</h3>
+                    <SmallButtonCard useCase="total" graphData="1002" readyToDisplay ={displayData} />
+                    <SmallButtonCard useCase="location" graphData="Toronto" readyToDisplay ={displayData} />
+                    <SmallButtonCard useCase="time" graphData="Monday, April 3, 2024" readyToDisplay ={displayData} />
+                </div>
+                <div className="flex bg-accent-color-darkgreen rounded-xl py-3 px-7">
+                    <div className="ml-auto mr-0">
+                        <LargeButtonCard useCase="generate" />
+                        <LargeButtonCard useCase="add" />
+                        <LargeButtonCard useCase="list" />
                     </div>
                 </div>
-                <LargeButtonCard useCase="generate" />
             </div>
         </>
     )

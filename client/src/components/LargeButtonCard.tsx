@@ -34,7 +34,7 @@ export default function LargeButtonCard({useCase}:CardProps){
 
     return (
             <Link to={`${cardData?.route}`}>
-                <div className="card w-80 my-2" ref={cardRef}>
+                <div className="card w-72 my-4" ref={cardRef}>
                     <p className="mr-5"> {cardData?.title} </p>
                     {cardHovering ? (
                         <FontAwesomeIcon 
