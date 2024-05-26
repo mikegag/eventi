@@ -72,6 +72,20 @@
           "route": "/date-list",
           "title": "View Date List",
           "icon": "faClipboardList"
+        },
+        "visuals": {
+            "totalIdeas": {
+              "title": "Total Date Ideas Created",
+              "icon": "faLightbulb"
+            },
+            "location": {
+              "title": "Most Visited Area",
+              "icon": "faCompass"
+            },
+            "time": {
+              "title": "Last Time You Went On A Date",
+              "icon": "faCalendar"
+            }
         }
       }
     }

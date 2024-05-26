@@ -49,7 +49,7 @@ export default function Header({useCase}:HeaderProps){
                         className="header-btn"
                         aria-label="login button which redirects to login page"
                     >
-                        Login
+                        Logout
                     </button>
                 </Link>
         </div>

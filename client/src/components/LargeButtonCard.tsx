@@ -15,7 +15,7 @@ const iconMap: Record<string, IconDefinition> = {
     faMartiniGlass
 }
 
-export default function DashboardCard({useCase}:CardProps){
+export default function LargeButtonCard({useCase}:CardProps){
     const [cardRef, cardHovering] = useHover()
 
     function getUseCaseInformation(givenCase:string){
@@ -27,16 +27,15 @@ export default function DashboardCard({useCase}:CardProps){
         } else if (formattedUseCase === 'list') {
             return data.dashboardData.list
         }
-        return null
+        return data.dashboardData.list
     }
 
     const cardData = getUseCaseInformation(useCase)
 
     return (
-        <div className="flex flex-col justify-center items-end bg-accent-color-darkgreen p-4 rounded-xl">
             <Link to={`${cardData?.route}`}>
                 <div className="card w-80 my-2" ref={cardRef}>
-                    <p className="mr-5"> cardData?.title </p>
+                    <p className="mr-5"> {cardData?.title} </p>
                     {cardHovering ? (
                         <FontAwesomeIcon 
                             icon={faArrowLeftLong} 
@@ -44,12 +43,11 @@ export default function DashboardCard({useCase}:CardProps){
                         />
                     ) : (
                         <FontAwesomeIcon 
-                            icon={iconMap?.cardData}
+                            icon={iconMap[cardData.icon]}
                             style={{ transition: 'transform 0.4s ease, opacity 0.4s ease', opacity: '1' }} 
                         />
                     )}
                 </div>
-            </Link>
-        </div>
+            </Link>  
     )
 }
