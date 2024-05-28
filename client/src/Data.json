@@ -31,62 +31,87 @@
     },
 
     "generateIdeaQuestions": [
-        {
-          "series": 1,
-          "questions": [
-            { "id": 1, "text": "Select One Option:", "options": ["Give me a new date idea ✨", "Recommend one from my date list 📋"] }
-          ]
-        },
-        {
-          "series": 2,
-          "questions": [
-            { "id": 2, "text": "Where Would You Like To Go?", "options": ["Somewhere close to me 📍", "I'm feeling adventurous 😎"] }
-          ]
-        },
-        {
-          "series": 3,
-          "questions": [
-            { "id": 3, "text": "How Much Would You Like To Spend?", "options": ["Keep it cheap!", "Less than $80", "I have no budget"] }
-          ]
-        },
-        {
-          "series": 4,
-          "questions": [
-            { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event 🧩", "Something chill ☺️"] }
-          ]
-        }
+      {
+        "series": 1,
+        "questions": [
+          { "id": 1, "text": "Select One Option:", "options": ["Give me a new date idea ✨", "Recommend one from my date list 📋"] }
+        ]
+      },
+      {
+        "series": 2,
+        "questions": [
+          { "id": 2, "text": "Where Would You Like To Go?", "options": ["Somewhere close to me 📍", "I'm feeling adventurous 😎"] }
+        ]
+      },
+      {
+        "series": 3,
+        "questions": [
+          { "id": 3, "text": "How Much Would You Like To Spend?", "options": ["Keep it cheap!", "Less than $80", "I have no budget"] }
+        ]
+      },
+      {
+        "series": 4,
+        "questions": [
+          { "id": 4, "text": "What do you prefer?", "options": ["An Activity/Event 🧩", "Something chill ☺️"] }
+        ]
+      }
       ],
 
-      "dashboardData": {
-        "generate": {
-          "route": "/generate-idea",
-          "title": "Generate Idea",
-          "icon": "faMartiniGlass"
-        },
-        "add": {
-          "route": "/add-idea",
-          "title": "Add Date Idea",
-          "icon": "faMagnifyingGlassPlus"
-        },
-        "list": {
-          "route": "/date-list",
-          "title": "View Date List",
-          "icon": "faClipboardList"
-        },
-        "visuals": {
-            "totalIdeas": {
-              "title": "Total Date Ideas Created",
-              "icon": "faLightbulb"
-            },
-            "location": {
-              "title": "Most Visited Area",
-              "icon": "faCompass"
-            },
-            "time": {
-              "title": "Last Time You Went On A Date",
-              "icon": "faCalendar"
-            }
-        }
+    "dashboardData": {
+      "generate": {
+        "route": "/generate-idea",
+        "title": "Generate Idea",
+        "icon": "faMartiniGlass"
+      },
+      "add": {
+        "route": "/add-idea",
+        "title": "Add Date Idea",
+        "icon": "faMagnifyingGlassPlus"
+      },
+      "list": {
+        "route": "/date-list",
+        "title": "View Date List",
+        "icon": "faClipboardList"
+      },
+      "visuals": {
+          "totalIdeas": {
+            "id": "totalIdeas",
+            "title": "Total Date Ideas Created",
+            "icon": "faLightbulb"
+          },
+          "location": {
+            "id": "location",
+            "title": "Most Visited Area",
+            "icon": "faCompass"
+          },
+          "time": {
+            "id": "time",
+            "title": "Last Time You Went On A Date",
+            "icon": "faCalendar"
+          }
+      }
+    }, 
+
+    "visualizations": {
+      "pie":{
+        "colorfill":["#00584d", "#f6b76c", "#007e70", "#ba8b52"],
+        "caption": "Based on all of your previous dates, here are your top four most visited areas:",
+        "ariaLabel": "Pie graph displaying the four most visited areas based on previous date ideas"
+      },
+      "line":{
+        "xlabel": "Last 4 Weeks",
+        "ylabel": "Number of Dates You Went On",
+        "colorfill":["#f6b76c"],
+        "caption": "Don't worry about tracking time, here is the last time you went on a date:",
+        "ariaLabel": "Line graph displaying the amount dates over the last 4 Weeks"
+      },
+      "bar":{
+        "xlabel": "Last 12 Months",
+        "ylabel": "Number of Dates Created",
+        "colorfill":["#f6b76c"],
+        "caption": "Over the last 12 months the total amount of date ideas you created was:",
+        "ariaLabel": "Bar graph displaying the total amount of date ideas created in the last 12 months"
       }
     }
+}
   

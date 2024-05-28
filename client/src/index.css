@@ -58,6 +58,10 @@ body {
             rounded-xl cursor-pointer bg-main-color-lightgrey px-10 py-7 w-fit hover:shadow-xl 
              hover:bg-main-color-yellow;
   }
+  .smallBtnCard {
+    @apply flex flex-col justify-start bg-main-color-lightgrey py-2 px-6 mb-3 rounded-xl border-2 border-accent-color-black 
+            hover:border-accent-color-darkyellow lg:px-8 lg:py-2 lg:mr-10;
+  }
 }
 
 @layer utilities {

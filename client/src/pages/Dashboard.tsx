@@ -1,39 +1,72 @@
-import React, {useEffect, useState} from "react"
+import React, {Component, useEffect, useState} from "react"
 import Header from "../components/Header"
-import DashboardCard from "../components/DashboardCard"
 import LargeButtonCard from "../components/LargeButtonCard"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faLightbulb } from "@fortawesome/free-regular-svg-icons"
-import { faCalendar, faCompass } from "@fortawesome/free-solid-svg-icons"
 import SmallButtonCard from "../components/SmallButtonCard"
-
+import GraphVisualization from "../components/GraphVisualization"
 
 export default function Dashboard(){
-    const [readyToDisplay, setReadyToDisplay] = useState<boolean>(false)
+    const [graphComponent, setGraphComponent] = useState<string>("totalIdeas")
+    const [selectedComponent, setSelectedComponent] = useState<boolean[]>([true,false,false])
+    const [graphDescription, setGraphDescription] = useState<string>("")
 
-    //handles which graph should be displayed based on clicked SmallButtonCard
-    function displayData(data:boolean){
-        // implement data taken from smallbuttoncard
-        setReadyToDisplay(data)
-        console.log(readyToDisplay)
+    //handles which graph should be displayed based on currently clicked SmallButtonCard
+    function displayData(componentID:string){
+        setGraphComponent(componentID)
+    }
+
+    //gets caption from current graph being displayed
+    function getGraphDescription(data:string){
+        setGraphDescription(data)
+    }
+
+    //updates styling of currently selected SmallButtonCard (uses current render ordering for indexes)
+    function updateComponentStyling(component:string){
+        if(component === "totalIdeas"){
+            setSelectedComponent([true,false,false])
+        }
+        else if(component === "location"){
+            setSelectedComponent([false,true,false])
+        }
+        else{
+            setSelectedComponent([false,false,true])
+        }
     }
 
     function formatGraphData(){
-        // implement data taken from smallbuttoncard
+        // pass data to graph from database
     }
+
+    useEffect(()=>{
+        //updates value of new graph to be displayed
+        displayData(graphComponent)
+        //updates styling of selected SmallButtonCard associated with graph
+        updateComponentStyling(graphComponent)
+    },[graphComponent])
 
     return (
         <>
             <Header useCase="protected"/>
             <div className="mx-auto">
                 <p className="mr-auto ml-0 mt-14 mb-10 text-2xl font-semibold text-main-color-lightgrey underline underline-offset-4">Hi, username</p>
-                <div className="flex mb-6">
-                    <SmallButtonCard useCase="total" graphData="1002" readyToDisplay ={displayData} />
-                    <SmallButtonCard useCase="location" graphData="Toronto" readyToDisplay ={displayData} />
-                    <SmallButtonCard useCase="time" graphData="Monday, April 3, 2024" readyToDisplay ={displayData} />
+                <div className="flex flex-col justify-center mx-auto lg:flex-row lg: mr-8 lg:justify-start">
+                    <SmallButtonCard useCase="total" graphData="1002" getComponent ={displayData}  isSelected={selectedComponent[0]}/>
+                    <SmallButtonCard useCase="location" graphData="Toronto" getComponent ={displayData} isSelected={selectedComponent[1]}/>
+                    <SmallButtonCard useCase="time" graphData="Monday, April 3, 2024" getComponent ={displayData} isSelected={selectedComponent[2]} />
                 </div>
-                <div className="flex bg-accent-color-darkgreen rounded-xl py-3 px-7">
-                    <div className="ml-auto mr-0">
+                <div className="flex flex-col lg:flex-row bg-accent-color-darkgreen rounded-xl p-3 mt-4 lg:p-5">
+                    <div className="flex flex-col justify-center mx-auto items-center">
+                        <p className="max-w-full min-w-full text-center mt-10 mb-8 text-main-color-lightgrey text-lg px-8">
+                            {graphDescription}
+                        </p>
+                        <p className="text-xl text-main-color-lightgrey mb-12">
+                            database info will go here
+                        </p>
+                    </div>
+                    <div className="min-w-72 max-w-72 min-h-72 lg:min-w-96 lg:max-w-96 bg-main-color-lightgrey rounded-xl p-2 lg:mx-3 mx-auto">
+                        <GraphVisualization key={graphComponent} useCase={`${graphComponent}`} description ={setGraphDescription}/>
+                    </div>
+                    <div className="w-full h-2 bg-main-color-lightgrey rounded-full my-8 lg:w-2 lg:mx-12 lg:h-auto lg:my-4" role="line"></div>
+                    <div className="mx-auto">
                         <LargeButtonCard useCase="generate" />
                         <LargeButtonCard useCase="add" />
                         <LargeButtonCard useCase="list" />
