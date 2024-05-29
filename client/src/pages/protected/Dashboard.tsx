@@ -1,8 +1,8 @@
 import React, {Component, useEffect, useState} from "react"
-import Header from "../components/Header"
-import LargeButtonCard from "../components/LargeButtonCard"
-import SmallButtonCard from "../components/SmallButtonCard"
-import GraphVisualization from "../components/GraphVisualization"
+import Header from "../../components/Header"
+import LargeButtonCard from "../../components/LargeButtonCard"
+import SmallButtonCard from "../../components/SmallButtonCard"
+import GraphVisualization from "../../components/GraphVisualization"
 
 export default function Dashboard(){
     const [graphComponent, setGraphComponent] = useState<string>("totalIdeas")

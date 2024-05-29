@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import { Link } from "react-router-dom"
-import Header from "../components/Header"
-import Form from "../components/Form"
+import Header from "../../components/Header"
+import Form from "../../components/Form"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck, faLongArrowLeft } from "@fortawesome/free-solid-svg-icons"
 

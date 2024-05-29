@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Header from "../components/Header"
+import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons"

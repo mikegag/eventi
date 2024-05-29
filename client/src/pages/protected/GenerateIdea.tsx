@@ -1,6 +1,6 @@
 import React, { useReducer } from "react"
-import Header from "../components/Header"
-import data from '../Data.json'
+import Header from "../../components/Header"
+import data from '../../Data.json'
 
 interface Question {
   id: number,

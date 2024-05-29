@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "../components/Header"
+import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faDollarSign, faThumbTack } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
@@ -11,7 +11,7 @@ export default function DateList(){
 
     return (
         <>
-            <Header useCase="default" />
+            <Header useCase="protected" />
             <h3 className="page-title">Saved Date Ideas</h3>
             <div className="list-container">
                 <Link to={'/<id>'}>

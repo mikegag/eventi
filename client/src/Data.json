@@ -59,17 +59,17 @@
 
     "dashboardData": {
       "generate": {
-        "route": "/generate-idea",
+        "route": "generate-idea",
         "title": "Generate Idea",
         "icon": "faMartiniGlass"
       },
       "add": {
-        "route": "/add-idea",
+        "route": "add-idea",
         "title": "Add Date Idea",
         "icon": "faMagnifyingGlassPlus"
       },
       "list": {
-        "route": "/date-list",
+        "route": "date-list",
         "title": "View Date List",
         "icon": "faClipboardList"
       },
