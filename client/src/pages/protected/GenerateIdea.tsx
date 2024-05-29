@@ -1,4 +1,4 @@
-import React, { useReducer } from "react"
+import React, { useEffect, useReducer } from "react"
 import Header from "../../components/Header"
 import data from '../../Data.json'
 
@@ -47,6 +47,10 @@ const reducer = (state: State, action: Action): State => {
 
 export default function GenerateIdea() {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    document.title = "Generate A Date Idea"
+  }, [])
 
   const handleAnswer = (questionId: number, answer: string) => {
     dispatch({ type: 'ANSWER_QUESTION', payload: { questionId, answer } })

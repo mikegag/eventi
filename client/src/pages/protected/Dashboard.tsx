@@ -9,6 +9,10 @@ export default function Dashboard(){
     const [selectedComponent, setSelectedComponent] = useState<boolean[]>([true,false,false])
     const [graphDescription, setGraphDescription] = useState<string>("")
 
+    useEffect(() => {
+        document.title = "Dashboard"
+    }, [])
+
     //handles which graph should be displayed based on currently clicked SmallButtonCard
     function displayData(componentID:string){
         setGraphComponent(componentID)

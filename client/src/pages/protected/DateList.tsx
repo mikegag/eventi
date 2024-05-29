@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faDollarSign, faThumbTack } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 
 export default function DateList(){
+    useEffect(() => {
+        document.title = "Saved Date Ideas"
+    }, [])
+    
     function retrieveDateList(){
         //logic with database will go here
     }

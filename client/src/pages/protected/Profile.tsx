@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeftLong, faWrench } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
 import { faUser } from "@fortawesome/free-regular-svg-icons"
-import { Link, Outlet } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function Profile(){
+    useEffect(() => {
+        document.title = "Profile"
+    }, [])
 
     return (
         <>

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import { Link } from "react-router-dom"
 import Header from "../../components/Header"
 import Form from "../../components/Form"
@@ -7,6 +7,11 @@ import { faCircleCheck, faLongArrowLeft } from "@fortawesome/free-solid-svg-icon
 
 export default function AddIdea(){
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
+
+    useEffect(() => {
+        document.title = "Add A Date Idea"
+    }, [])
+
     function handleSubmit (formData: { [key: string]: string }):void {
         console.log('Form data submitted:', formData);
         setIsSubmitted(true)
