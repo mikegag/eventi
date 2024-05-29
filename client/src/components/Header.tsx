@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import React from "react"
 import { useNavigate, Link } from "react-router-dom"
 
@@ -22,14 +23,19 @@ export default function Header({useCase}:HeaderProps){
                         aria-label="eventi logo, spelled normally except 'v' is replaced with a heart and 'i' is replaced with a location dot symbol"
                     />
                 </Link>
-                <Link to={'/login'} className="mt-auto mb-auto ml-auto mr-0">
-                    <button 
-                        className="header-btn"
-                        aria-label="login button which redirects to login page"
-                    >
-                        Login
-                    </button>
-                </Link>
+                <motion.button
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <Link to={'/login'} className="mt-auto mb-auto ml-auto mr-0">
+                        <button 
+                            className="header-btn"
+                            aria-label="login button which redirects to login page"
+                        >
+                            Login
+                        </button>
+                    </Link>
+                </motion.button>
             </div>
         )
         :
@@ -42,23 +48,33 @@ export default function Header({useCase}:HeaderProps){
                         aria-label="eventi logo, spelled normally except 'v' is replaced with a heart and 'i' is replaced with a location dot symbol"
                     />
                 </Link>
-                <Link to={'/dashboard/profile'} className="mt-auto mb-auto ml-auto mr-3 lg:mr-5">
-                    <button 
-                        className="header-btn"
-                        aria-label="login button which redirects to login page"
-                    >
-                        Profile
-                    </button>
-                </Link>
-                <Link to={'/'} className="mt-auto mb-auto ml-0 mr-0">
-                    <button 
-                        className="header-btn"
-                        aria-label="login button which redirects to login page"
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </button>
-                </Link>
+                <motion.button
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <Link to={'/dashboard/profile'} className="mt-auto mb-auto ml-auto mr-3 lg:mr-5">
+                        <button 
+                            className="header-btn"
+                            aria-label="login button which redirects to login page"
+                        >
+                            Profile
+                        </button>
+                    </Link>
+                </motion.button>
+                <motion.button
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    <Link to={'/'} className="mt-auto mb-auto ml-0 mr-0">
+                        <button 
+                            className="header-btn"
+                            aria-label="login button which redirects to login page"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    </Link>
+                </motion.button>
         </div>
         )
     )

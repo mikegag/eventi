@@ -1,4 +1,8 @@
 {
+    "aboutSection":{
+      "description": "Welcome to Eventi, your go-to app for stress-free date nights! Whether you're planning a romantic evening or a fun outing with your partner, Eventi has you covered. Our app recommends personalized date ideas tailored to your preferences, ensuring that every outing is unique and enjoyable. Save your favorite ideas and customize them to suit your tastes, making it easy to access them whenever you need inspiration. Say goodbye to date night stress and hello to unforgettable experiences with Eventi!"
+    },
+
     "formData": {
       "login": {
         "title": "Hello Again!",
