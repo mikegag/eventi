@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 import LandingPage from "./pages/Landing"
 import Login from './pages/Login'
 import SignUp from './pages/Signup'
-import About from './pages/About'
+import About from './components/About'
 import Faqs from './pages/Faqs'
 import Error from './pages/Error'
 import RouteAuthentication from "./components/RouteAuthentication"
