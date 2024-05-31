@@ -23,19 +23,16 @@ export default function Header({useCase}:HeaderProps){
                         aria-label="eventi logo, spelled normally except 'v' is replaced with a heart and 'i' is replaced with a location dot symbol"
                     />
                 </Link>
-                <motion.button
-                    whileHover={{ scale: 1.06 }}
-                    whileTap={{ scale: 0.9 }}
-                >
-                    <Link to={'/login'} className="mt-auto mb-auto ml-auto mr-0">
-                        <button 
-                            className="header-btn"
-                            aria-label="login button which redirects to login page"
-                        >
-                            Login
-                        </button>
-                    </Link>
-                </motion.button>
+                <Link to={'/login'} className="mt-auto mb-auto ml-auto mr-0">
+                    <motion.button
+                        whileHover={{ scale: 1.06 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="header-btn"
+                        aria-label="login button which redirects to login page"
+                    >
+                        Login
+                    </motion.button>
+                </Link>
             </div>
         )
         :

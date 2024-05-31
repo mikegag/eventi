@@ -20,10 +20,11 @@ export default function Landing(){
                 <motion.button
                     whileHover={{ scale: 1.06 }}
                     whileTap={{ scale: 0.9 }}
+                    className="header-btn bg-main-color-yellow text-xl px-7 py-2 hover:bg-accent-color-darkyellow shadow-sm"
                 >
-                    <button className="header-btn bg-main-color-yellow text-xl px-7 py-2 hover:bg-accent-color-darkyellow shadow-sm"> 
+                    
                         Get Started
-                    </button>
+                    
                 </motion.button>
                 </Link>
                 <div className="mt-72">
