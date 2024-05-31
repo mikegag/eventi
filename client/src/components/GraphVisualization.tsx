@@ -10,10 +10,10 @@ interface GraphProps {
 export default function GraphVisualization({useCase, description}: GraphProps){
     //example data
     const data = [
-        { name: 'Group A', value: 580 },
-        { name: 'Group B', value: 200 },
-        { name: 'Group C', value: 70 },
-        { name: 'Group D', value: 20 },
+        { name: 'Toronto', value: 3 },
+        { name: 'Missisauga', value: 1 },
+        { name: 'Markham', value: 4 },
+        { name: 'Woodbridge', value: 2 },
     ]
 
     function getUseCaseInformation(givenCase:string){

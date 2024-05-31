@@ -4,7 +4,7 @@ import LandingPage from "./pages/Landing"
 import Login from './pages/Login'
 import SignUp from './pages/Signup'
 import About from './components/About'
-import Faqs from './pages/Faqs'
+import Faqs from './components/Faqs'
 import Error from './pages/Error'
 import RouteAuthentication from "./components/RouteAuthentication"
 import Dashboard from './pages/protected/Dashboard'

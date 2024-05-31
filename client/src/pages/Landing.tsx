@@ -4,6 +4,8 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import About from "../components/About"
 import { motion } from "framer-motion"
+import Example from "../components/Example"
+import Faqs from "../components/Faqs"
 
 export default function Landing(){
     useEffect(() => {
@@ -25,11 +27,17 @@ export default function Landing(){
                         Get Started
                     </motion.button>
                 </Link>
-                <div className="mt-72">
+                <div className="mt-72 mb-36">
                     <About />
                 </div>
+                <div>
+                    <Example />
+                </div>
+                <div className="mt-40 mb-28">
+                    <Faqs />
+                </div>
             </div>
-            
+             <Footer/>
         </>
     )
 }

@@ -5,7 +5,14 @@
         "points": ["Personalized recommendations for unforgettable outings","Save and customize your favorite date ideas","Say goodbye to date night stress", "Hello to unique and enjoyable experiences" ]
       }
     },
-
+    "faqs": {
+      "questions": ["How does Eventi work?","Are the date suggestions suitable for different relationship stages?", "Is Eventi free to use?"],
+      "answers": ["Eventi utilizes advanced algorithms to analyze your preferences, interests, and location to suggest personalized date activities. It considers factors like your preferred date type (romantic, adventurous, low-key), budget, and any specific interests you've mentioned. Then, it generates tailored suggestions to ensure your date is enjoyable and memorable.","Absolutely! Eventi offers suggestions tailored to various relationship stages, from early dating to long-term partnerships.", "Yes! Eventi is absolutely free to use."]
+    },
+    "graphExample":{
+      "heading":"Seeing is Believing 😎",
+      "body": "Leave the heavy lifting to us as we manage it all for you. Explore your dating history, uncover popular spots, and discover insightful visualizations. Feeling uninspired? Our A.I. is here to curate personalized date night ideas for you and your partner!"
+    },
     "formData": {
       "login": {
         "title": "Hello Again!",

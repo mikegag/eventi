@@ -7,6 +7,7 @@ export default function About(){
     const [isVisible, setIsVisible] = useState(false);
     const { ref, inView } = useInView({
         threshold: 0.6
+        
     })
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function About(){
 
     return (
         <>
-            <div className="h-2 bg-main-color-lightgrey rounded-full px-4 lg:w-5/12 lg:mx-auto mb-28"></div>
+            <div className="h-2 bg-main-color-lightgrey rounded-full px-4 lg:w-5/12 lg:mx-auto mb-32"></div>
             <div className="flex flex-col lg:flex-row">
                 <div>
                 <motion.div
@@ -40,8 +41,8 @@ export default function About(){
                 </motion.div>
                 </div>
                     <img 
-                            src={require("../assets/couple-love.png")} 
-                            className="w-60 mt-8 mb-14 mx-auto lg:w-72 lg:ml-8 lg:mt-14"
+                        src={require("../assets/couple-love.png")} 
+                        className="w-60 mt-8 mb-14 mx-auto lg:w-72 lg:ml-8 lg:mt-14"
                     />
             </div>
         </>

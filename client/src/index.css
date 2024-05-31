@@ -34,7 +34,7 @@ body {
     @apply p-2 flex flex-col justify-center items-center ml-auto mr-auto mb-auto mt-40;
   }
   .footer-container {
-    @apply flex flex-row justify-center items-center m-auto mt-64 text-base text-accent-color-white;
+    @apply flex flex-row justify-center items-center m-auto mt-8 text-base text-accent-color-white;
   }
   .form-label {
     @apply block text-xl mt-5 mb-3 font-light leading-6 text-main-color-lightgrey;
