@@ -28,15 +28,15 @@ export default function Landing(){
                         Get Started
                     </motion.button>
                 </Link>
-                <div className="mt-72 mb-36">
+                <section className="mt-72 mb-36">
                     <About />
-                </div>
-                <div>
+                </section>
+                <section>
                     <Example />
-                </div>
-                <div className="mt-40 mb-28">
+                </section>
+                <section className="mt-40 mb-28">
                     <Faqs />
-                </div>
+                </section>
             </div>
             <Footer/>
         </>
