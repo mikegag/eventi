@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
 import { useNavigate} from "react-router-dom"
 import Header from "../components/Header"
-import Footer from "../components/Footer"
 import Form from "../components/Form"
 
 export default function Login(){
@@ -23,7 +22,6 @@ export default function Login(){
                 useCase="login"
                 onSubmit={handleSubmit}
             />
-            <Footer />
         </>
     )
 }

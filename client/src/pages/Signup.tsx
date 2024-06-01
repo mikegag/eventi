@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import Header from "../components/Header"
-import Footer from "../components/Footer"
 import Form from "../components/Form"
 
 export default function SignUp(){
@@ -19,7 +18,6 @@ export default function SignUp(){
                 useCase="signup"
                 onSubmit={handleSubmit}
             />
-            <Footer />
         </>
     )
 }

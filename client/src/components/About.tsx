@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import data from "../Data.json"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 
 export default function About(){
-    const [isVisible, setIsVisible] = useState(false);
     const { ref, inView } = useInView({
         threshold: 0.6
         
     })
-
-    useEffect(() => {
-        if (inView) {
-            setIsVisible(true)
-        }
-    }, [inView])
 
     return (
         <>
@@ -24,14 +17,14 @@ export default function About(){
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, x: "-20%" }}
-                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : "-20%" , transition: { duration: 1.1 } }}
+                    animate={{ opacity:inView ? 1 : 0, x:inView ? 0 : "-20%" , transition: { duration: 1.1 } }}
                 >
                     <h3 className="page-title mt-0 no-underline px-4 lg:text-left lg:px-0">{data.aboutSection.description.heading}</h3>
                 </motion.div>
                 <motion.div
                     ref={ref}
                     initial={{ opacity: 0, x: "20%" }}
-                    animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : "20%" , transition: { duration: 1.1 } }}
+                    animate={{ opacity:inView ? 1 : 0, x:inView ? 0 : "20%" , transition: { duration: 1.1 } }}
                 >
                     <ul className="mx-auto lg:mr-28 lg:pt-4">
                         {data.aboutSection.description.points.map((curr, index)=>(

@@ -22,12 +22,12 @@ export default function Question({ question, answer }: FaqCardProps){
     }
 
     return (
-        <div className="rounded-lg shadow-md mb-10 md:max-w-lg lg:max-w-2xl ml-auto mr-auto">
+        <div className="rounded-lg shadow-md mb-10 md:max-w-lg lg:min-w-96 ml-auto mr-auto">
             <button
                 onClick={toggleAccordion}
                 className={`flex justify-between items-center w-full p-4 bg-main-color-lightgrey rounded-lg ${isOpen? 'rounded-b-none':''}`}
             >
-                <p className="text-lg font-semibold text-accent-color-black">{question}</p>
+                <p className="text-lg font-semibold text-left text-accent-color-black">{question}</p>
                 <FontAwesomeIcon 
                     icon={faChevronDown} 
                     className={`h-6 w-6 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
