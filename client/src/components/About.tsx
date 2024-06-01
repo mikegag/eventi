@@ -39,9 +39,9 @@ export default function About(){
                     </motion.div>
                 </div>
                 <img 
+                    alt="man and women holding hands looking at each other"
                     src={require("../assets/couple-love.png")} 
                     className="w-60 mt-8 mb-14 mx-auto lg:w-72 lg:ml-8 lg:mt-14"
-                    alt="man and women holding hands looking at each other"
                 />
             </div>
         </>

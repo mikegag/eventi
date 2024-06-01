@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from "react"
+import React, {useEffect, useState} from "react"
 import Header from "../../components/Header"
 import LargeButtonCard from "../../components/LargeButtonCard"
 import SmallButtonCard from "../../components/SmallButtonCard"

@@ -1,4 +1,4 @@
-import React, { PureComponent, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Label} from 'recharts';
 import dataFile from "../Data.json"
 
@@ -35,7 +35,6 @@ export default function GraphVisualization({useCase, description}: GraphProps){
         description(graphData.caption);
     }, [description])
 
-    const hi = ["d"]
     return (
         <ResponsiveContainer width="99%" height="99%">
             {useCase === "location" ? (

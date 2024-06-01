@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import { IconDefinition, faLightbulb, faCompass, faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import data from "../Data.json"

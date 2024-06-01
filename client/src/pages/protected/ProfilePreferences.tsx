@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import Header from "../../components/Header"
-import { faArrowLeftLong, faChampagneGlasses, faLocationDot } from "@fortawesome/free-solid-svg-icons"
+import { faChampagneGlasses, faLocationDot } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom"
 import { faHeart } from "@fortawesome/free-regular-svg-icons"
 
 export default function ProfilePreferences(){
