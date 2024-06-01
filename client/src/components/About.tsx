@@ -41,6 +41,7 @@ export default function About(){
                     <img 
                         src={require("../assets/couple-love.png")} 
                         className="w-60 mt-8 mb-14 mx-auto lg:w-72 lg:ml-8 lg:mt-14"
+                        alt="man and women holding hands looking at each other"
                     />
             </div>
         </>
