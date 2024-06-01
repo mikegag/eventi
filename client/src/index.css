@@ -75,7 +75,8 @@ body {
     @apply flex justify-center items-center text-xl text-main-color-lightgrey mx-auto my-5 hover:text-accent-color-darkyellow;
   }
   .list-container {
-    @apply bg-main-color-lightgrey mx-auto rounded-lg px-3 py-2 md:w-10/12 lg:w-9/12 lg:text-lg lg:px-8 border-2 border-accent-color-black h-96 overflow-y-scroll;
+    @apply bg-main-color-lightgrey mx-auto rounded-lg px-3 py-2 md:w-10/12 lg:w-9/12 lg:text-lg lg:px-8 border-2 
+            border-accent-color-black h-96 overflow-y-scroll;
   }
   .list-container::-webkit-scrollbar {
     width: 16px;
@@ -113,5 +114,9 @@ body {
   }
   .about-bullet-point {
     @apply list-disc text-lg text-main-color-lightgrey mb-5 text-center lg:text-left lg:text-2xl lg:mb-8;
+  }
+  .example-container {
+    @apply flex flex-col lg:flex-row bg-main-color-lightgrey rounded-2xl border-2 border-accent-color-black 
+            px-3 py-4 lg:px-5 lg:py-8 mx-auto lg:mx-20;
   }
 }
