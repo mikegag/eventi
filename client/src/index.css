@@ -108,4 +108,10 @@ body {
     @apply flex mx-auto justify-start text-main-color-lightgrey text-xl border-b-2 py-7 my-3 
            cursor-pointer md:w-3/6 hover:text-accent-color-darkyellow hover:border-accent-color-darkyellow;
   }
+  .about-top-line {
+    @apply h-2 bg-main-color-lightgrey rounded-full px-4 lg:w-5/12 lg:mx-auto mb-32;
+  }
+  .about-bullet-point {
+    @apply list-disc text-lg text-main-color-lightgrey mb-5 text-center lg:text-left lg:text-2xl lg:mb-8;
+  }
 }
