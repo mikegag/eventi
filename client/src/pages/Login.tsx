@@ -15,6 +15,7 @@ export default function Login(){
         navigate("/dashboard")
         // Handle form data submission logic here
     }
+    
     return (
         <>
             <Header useCase="default"/>
