@@ -83,14 +83,7 @@ WSGI_APPLICATION = "eventi_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": env('POSTGRES_RAILWAY_NAME'),
-        "USER": env('POSTGRES_RAILWAY_USER'),
-        "PASSWORD": env('POSTGRES_RAILWAY_PASSWORD'),
-        "HOST": env('POSTGRES_RAILWAY_HOST'),
-        "PORT": env('POSTGRES_RAILWAY_PORT')
-    }
+    "default": env.db('DATABASE_URL')
 }
 
 
@@ -133,4 +126,4 @@ STATIC_URL = "static/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField" 
