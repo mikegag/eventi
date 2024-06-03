@@ -15,8 +15,8 @@ export default function About(){
                 <div>
                     <motion.div
                         ref={ref}
-                        initial={{ opacity: 0, x: "-15%" }}
-                        animate={{ opacity:inView ? 1 : 0, x:inView ? 0 : "-15%" , transition: { duration: 1.1 } }}
+                        initial={{ opacity: 0, x: "-10%" }}
+                        animate={{ opacity:inView ? 1 : 0, x:inView ? 0 : "-10%" , transition: { duration: 1.1 } }}
                     >
                         <h3 className="page-title mt-0 no-underline px-4 lg:text-left lg:px-0">
                             {data.aboutSection.description.heading}
