@@ -69,7 +69,7 @@ export default function Dashboard(){
                     <div className="min-w-72 max-w-72 min-h-72 lg:min-w-96 lg:max-w-96 bg-main-color-lightgrey rounded-xl p-2 lg:mx-3 mx-auto">
                         <GraphVisualization key={graphComponent} useCase={`${graphComponent}`} description ={setGraphDescription}/>
                     </div>
-                    <div className="w-full h-2 bg-main-color-lightgrey rounded-full my-8 lg:w-2 lg:mx-12 lg:h-auto lg:my-4" role="line"></div>
+                    <div className="w-full h-2 bg-main-color-lightgrey rounded-full my-8 lg:w-2 lg:mx-12 lg:h-auto lg:my-4" role="presentation"></div>
                     <div className="mx-auto">
                         <LargeButtonCard useCase="generate" />
                         <LargeButtonCard useCase="add" />

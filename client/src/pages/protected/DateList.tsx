@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faDollarSign, faThumbTack } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeftLong, faDollarSign, faThumbTack } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 
 export default function DateList(){
@@ -16,9 +16,15 @@ export default function DateList(){
     return (
         <>
             <Header useCase="protected" />
-            <h3 className="page-title">Saved Date Ideas</h3>
+            <Link to={'/dashboard'}>
+                <FontAwesomeIcon 
+                    icon={faArrowLeftLong} 
+                    className="back-arrow"
+                />
+            </Link>
+            <h3 className="page-title mt-6 lg:mt-2">Saved Date Ideas</h3>
             <div className="list-container">
-                <Link to={'/<id>'}>
+                <Link to={':id'}>
                     <div className="date-list-option"> 
                         <h4 className="max-w-24 md:max-w-56 lg:max-w-72 overflow-clip text-nowrap text-ellipsis">
                             Tacos at Gustos
