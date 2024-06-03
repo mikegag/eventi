@@ -22,7 +22,7 @@ export default function Question({ question, answer }: FaqCardProps){
     }
 
     return (
-        <div className="rounded-lg shadow-md mb-10 md:max-w-lg lg:min-w-96 ml-auto mr-auto">
+        <div className="rounded-lg shadow-md mb-10 md:max-w-lg lg:max-w-3xl mx-auto">
             <button
                 onClick={toggleAccordion}
                 className={`flex justify-between items-center w-full p-4 bg-main-color-lightgrey rounded-lg ${isOpen? 'rounded-b-none':''}`}

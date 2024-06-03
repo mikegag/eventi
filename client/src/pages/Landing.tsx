@@ -34,7 +34,7 @@ export default function Landing(){
                 <section>
                     <Example />
                 </section>
-                <section className="mt-40 mb-28">
+                <section className="mt-40 mb-28 w-full">
                     <Faqs />
                 </section>
             </div>

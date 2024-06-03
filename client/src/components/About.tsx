@@ -31,7 +31,7 @@ export default function About(){
                             {data.aboutSection.description.points.map((curr, index)=>(
                                 <li 
                                     key={index} 
-                                    className="about-bullet-point">
+                                    className="about-bullet-point ml-4 lg:mx-auto">
                                         {curr}
                                 </li>
                             ))}
