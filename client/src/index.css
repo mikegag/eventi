@@ -28,7 +28,7 @@ body {
             border-accent-color-black border font-josefin cursor-pointer shadow-sm hover:bg-accent-color-darkyellow;
   }
   .page-title {
-    @apply text-4xl font-bold underline underline-offset-4 decoration-4 text-center text-main-color-lightgrey mt-16 mb-12;
+    @apply text-4xl font-bold underline underline-offset-4 decoration-4 text-center text-main-color-lightgrey mt-16 mb-10;
   }
   .content-container {
     @apply p-2 flex flex-col justify-center items-center ml-auto mr-auto mb-auto mt-40;
@@ -58,9 +58,12 @@ body {
             rounded-xl cursor-pointer bg-main-color-lightgrey px-10 py-7 w-fit hover:shadow-xl 
              hover:bg-main-color-yellow;
   }
-  .smallBtnCard {
+  .small-btn-card {
     @apply flex flex-col justify-start bg-main-color-lightgrey py-2 px-6 mb-3 rounded-xl border-2 border-accent-color-black 
             hover:border-accent-color-darkyellow lg:px-8 lg:py-2 lg:mr-10;
+  }
+  .back-arrow {
+    @apply text-main-color-lightgrey mr-auto mt-12 text-4xl pl-1 cursor-pointer hover:text-accent-color-darkyellow;
   }
 }
 

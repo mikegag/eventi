@@ -60,8 +60,8 @@ export default function Form({ useCase, onSubmit }: FormProps) {
   const formOutput = determineUseCase(useCase)
 
   return (
-    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm lg:max-w-lg">
-      <h3 className="page-title">{formOutput.title}</h3>
+    <div className={`mt-10 ${formOutput===formData.formData.date ? 'mt-6 lg:mt-1':''} sm:mx-auto sm:w-full sm:max-w-sm lg:max-w-lg`}>
+      <h3 className={`page-title ${formOutput===formData.formData.date ? 'mt-6 lg:mt-1':''}`}>{formOutput.title}</h3>
       <form onSubmit={handleSubmit}>
         {formOutput.ids.map((id, index) => (
           <div key={id}>
@@ -112,7 +112,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
                   onChange={handleChange}
                   required
                   placeholder={formOutput.placeholders[index]}
-                  className="form-input max-h-32 min-h-32"
+                  className="form-input max-h-24 min-h-24"
                 />
               )}
             </div>

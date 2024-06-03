@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEnvelope, faUser } from "@fortawesome/free-regular-svg-icons"
-import { faSignature } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeftLong, faSignature } from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom"
 
 export default function PersonalInformation(){
     const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -11,8 +12,13 @@ export default function PersonalInformation(){
     return (
         <>
             <Header useCase="protected"/>
-            <h3 className="page-title"> Personal Information</h3>
-            
+            <Link to={'../'}>
+                <FontAwesomeIcon 
+                    icon={faArrowLeftLong} 
+                    className="back-arrow"
+                />
+            </Link>
+            <h3 className="page-title mt-6 lg:mt-2"> Personal Information</h3>
             <form className="flex flex-col md:w-3/5 mx-auto">
             {!isOpen?
             <>

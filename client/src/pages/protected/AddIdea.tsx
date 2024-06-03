@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Header from "../../components/Header"
 import Form from "../../components/Form"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleCheck, faLongArrowLeft } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeftLong, faCircleCheck, faLongArrowLeft } from "@fortawesome/free-solid-svg-icons"
 
 export default function AddIdea(){
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false)
@@ -20,9 +20,15 @@ export default function AddIdea(){
     return (
         <>
             <Header useCase="protected" />
-            {!isSubmitted ? 
+            <Link to={'../'}>
+                <FontAwesomeIcon 
+                    icon={faArrowLeftLong} 
+                    className="back-arrow"
+                />
+            </Link>
+            {isSubmitted ? 
             (   <div className="flex flex-col justify-center">
-                    <h3 className="page-title">Idea Successfully Saved!</h3>
+                    <h3 className="page-title mt-6 lg:mt-2">Idea Successfully Saved!</h3>
                     <FontAwesomeIcon icon={faCircleCheck} className="mx-auto text-7xl mt-8 mb-16 text-main-color-yellow" />
                     <Link to={'/date-list'} className="page-link">
                         <FontAwesomeIcon icon={faLongArrowLeft} />

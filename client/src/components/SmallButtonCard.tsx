@@ -37,7 +37,7 @@ export default function SmallButtonCard({useCase, graphData, getComponent, isSel
 
     return (
         <div 
-            className={`smallBtnCard ${isSelected? "bg-main-color-yellow": "bg-main-color-lightgrey"}`} 
+            className={`small-btn-card ${isSelected? "bg-main-color-yellow": "bg-main-color-lightgrey"}`} 
             id={cardData.id} 
             onClick={()=>handleClick(cardData.id)} 
             role="button"

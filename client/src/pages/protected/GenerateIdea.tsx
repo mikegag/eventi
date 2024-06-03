@@ -1,6 +1,9 @@
 import React, { useEffect, useReducer } from "react"
 import Header from "../../components/Header"
 import data from '../../Data.json'
+import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 interface Question {
   id: number,
@@ -67,10 +70,18 @@ export default function GenerateIdea() {
   return (
     <div>
       <Header useCase="protected" />
-      <div className="p-4">
+      <Link to={'../'}>
+                <FontAwesomeIcon 
+                    icon={faArrowLeftLong} 
+                    className="back-arrow"
+                />
+      </Link>
+      <div className="p-4 pt-0 mt-6 lg:mt-2">
         {questions[state.currentSeries].questions.map((question: Question) => (
           <div key={question.id} className="flex flex-col justify-center items-center">
-            <h3 className="text-3xl font-semibold text-main-color-lightgrey mx-auto text-center mt-14 mb-12">{question.text}</h3>
+            <h3 className="text-3xl font-semibold text-main-color-lightgrey mx-auto text-center mt-14 mb-12">
+              {question.text}
+            </h3>
             {question.options.map((option, index) => (
               <div key={option} >
                 <button onClick={() => handleAnswer(question.id, option)}>

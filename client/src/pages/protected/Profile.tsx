@@ -16,7 +16,7 @@ export default function Profile(){
             <Link to={'/dashboard'}>
                 <FontAwesomeIcon 
                     icon={faArrowLeftLong} 
-                    className="text-main-color-lightgrey mr-auto mt-12 text-4xl pl-1 cursor-pointer hover:text-accent-color-darkyellow"
+                    className="back-arrow"
                 />
             </Link>
             <div className="profile-upper-container mb-16">
@@ -29,7 +29,7 @@ export default function Profile(){
                     <FontAwesomeIcon icon={faUser} />
                     <p className="ml-5">Personal Information</p>
                 </div>
-            </Link>t
+            </Link>
             <Link to={"profile-preferences"}>
                 <div className="profile-section-link">
                     <FontAwesomeIcon icon={faWrench} />
