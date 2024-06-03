@@ -10,7 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import environ
 from pathlib import Path
+
+# Initialise environment variables
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+# Reading .env file
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +29,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-gcjqm)_ez)u_*1zlx=(q0hjd6v$i)$d+^^2af4t0%5z0^5lf)^"
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 
 
 # Application definition
@@ -76,11 +85,11 @@ WSGI_APPLICATION = "eventi_project.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "".
-        "PORT": ""
+        "NAME": env('POSTGRES_RAILWAY_NAME'),
+        "USER": env('POSTGRES_RAILWAY_USER'),
+        "PASSWORD": env('POSTGRES_RAILWAY_PASSWORD'),
+        "HOST": env('POSTGRES_RAILWAY_HOST'),
+        "PORT": env('POSTGRES_RAILWAY_PORT')
     }
 }
 
