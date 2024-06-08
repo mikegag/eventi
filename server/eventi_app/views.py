@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import SignUpForm, ProfilePreferenceForm
+from django.http import response
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 def login(request):
     if request.method == 'POST':
-
 
 def sign_up(request):
     if request.method == 'POST':
@@ -28,4 +30,23 @@ def profile_preference(request):
     else:
         form = ProfilePreferenceForm()
     return request, {'form': form}
+
+
+@api_view(['GET'])
+def getRoutes(request):
+
+    routes = [
+        {
+            'Endpoint': '/dashboard',
+            'method': 'GET',
+            'body': None,
+        },
+        {
+            'Endpoint': '/notes/id',
+            'method': 'GET',
+            'body': None,
+            'description': 'Returns a single note object'
+        },
+    ]
+    return Response(routes)
 

@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(max_length=40, unique=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    applications = models.JSONField(default=list)
+    date_ideas = models.JSONField(default=list)
 
     objects = UserManager()
 
@@ -48,5 +48,6 @@ class ProfilePreference(models.Model):
     def __str__(self):
         return f'{self.user.username} Preferences
 
-class Date(models.Model):
+class DateIdea(models.Model):
+    
     
