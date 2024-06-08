@@ -41,13 +41,18 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class ProfilePreference(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preference')
-    partner = models.CharField(max_length=50)
-    location = models.CharField(max_length=100)
+    partner = models.CharField(max_length=70)
+    location = models.CharField(max_length=70)
     interests = models.TextField()  # Or use a ManyToManyField if interests are predefined choices
 
     def __str__(self):
         return f'{self.user.username} Preferences
 
 class DateIdea(models.Model):
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preference')
+    title = models.CharField(max_length=70)
+    description = models.TextField(max_length=70)
+    location = models.CharField(max_length=70)
+
+    return self.title,self.description,self.location,
     
