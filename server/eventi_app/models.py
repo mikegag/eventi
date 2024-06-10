@@ -50,14 +50,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         'auth.Group',
         verbose_name=_('groups'),
         blank=True,
-        related_name='eventi_user_set',  # Updated related_name
+        related_name='eventi_user_set',
         related_query_name='eventi_user',
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
         verbose_name=_('user permissions'),
         blank=True,
-        related_name='eventi_user_set',  # Updated related_name
+        related_name='eventi_user_set', 
         related_query_name='eventi_user',
     )
 
