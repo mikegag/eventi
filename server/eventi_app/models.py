@@ -43,7 +43,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preferences')
     partner = models.CharField(max_length=70)
     location = models.CharField(max_length=70)
-    interests = models.TextField() 
+    interests = models.TextField()
 
     def __str__(self):
         return f'{self.user.username} Preferences'
@@ -59,11 +59,9 @@ class DateIdea(models.Model):
     title = models.CharField(max_length=70, null=True)
     description = models.TextField()
     location = models.CharField(max_length=70)
-    budget = models.CharField(max_length=6, choices=BUDGET_CHOICES)
+    budget = models.CharField(max_length=9, choices=BUDGET_CHOICES)
     date_created = models.DateTimeField(default=timezone.now)
-    completed = models.bool()
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.title} - {self.description} - {self.location} - {self.budget} - {self.date_created} - {self.completed}'
-
-    

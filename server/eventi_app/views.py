@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, authenticate
 from django.http import JsonResponse
@@ -7,10 +8,9 @@ from django.contrib.auth.decorators import login_required
 from .models import User, Profile, DateIdea
 from .serializers import DateIdeaSerializer
 
-
 def user_login(request):
     if request.method == 'POST':
-        data = request.POST if request.headers.get('X-Requested-With') == 'XMLHttpRequest' else request.json()
+        data = json.loads(request.body)
         email = data.get('email')
         password = data.get('password')
         user = authenticate(request, email=email, password=password)
@@ -94,14 +94,14 @@ def delete_account(request):
 @login_required
 def get_date_ideas(request):
     user = request.user
-    date_ideas = user.date_ideas.all()
+    date_ideas = DateIdea.objects.filter(user=user)
     serializer = DateIdeaSerializer(date_ideas, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 @login_required
 def get_date_details(request, pk):
     user = request.user
-    idea = get_object_or_404(DateIdea, user=user, id=pk)
+    idea = get_object_or_404(DateIdea, user=user, pk=pk)
     serializer = DateIdeaSerializer(idea, many=False)
     return JsonResponse(serializer.data)
 
@@ -109,13 +109,14 @@ def get_date_details(request, pk):
 def update_date_idea(request, pk):
     if request.method == 'POST':
         user = request.user
-        idea = get_object_or_404(DateIdea, user=user, id=pk)
+        idea = get_object_or_404(DateIdea, user=user, pk=pk)
         data = json.loads(request.body)
 
         idea.title = data.get('title', idea.title)
         idea.description = data.get('description', idea.description)
         idea.location = data.get('location', idea.location)
         idea.budget = data.get('budget', idea.budget)
+        idea.completed = data.get('completed', idea.completed)
 
         idea.save()
 
@@ -163,4 +164,3 @@ def getRoutes(request):
         },
     ]
     return Response(routes)
-
