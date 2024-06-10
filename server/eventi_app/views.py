@@ -127,40 +127,87 @@ def getRoutes(request):
 
     routes = [
         {
+            'Endpoint': '/login',
+            'method': 'POST',
+            'body': {
+                'email': 'string',
+                'password': 'string'
+            },
+            'description': 'Logs in an existing user'
+        },
+        {
+            'Endpoint': '/signup',
+            'method': 'POST',
+            'body': {
+                'fullname': 'string',
+                'email': 'string',
+                'username': 'string',
+                'password': 'string'
+            },
+            'description': 'Creates a new user'
+        },
+        {
             'Endpoint': '/dashboard',
             'method': 'GET',
             'body': None,
-            'description': 'returns an array of all date idea objects belonging to the user'
+            'description': 'Returns an array of all date idea objects belonging to the user'
         },
         {
             'Endpoint': '/dashboard/profile',
             'method': 'GET',
             'body': None,
-            'description': 'returns an object with profile information belonging to the user'
+            'description': 'Returns an object with profile information belonging to the user'
         },
         {
             'Endpoint': '/dashboard/profile/profile-preferences',
             'method': 'GET',
             'body': None,
-            'description': 'returns an object with profile preferences belonging to the user'
+            'description': 'Returns an object with profile preferences belonging to the user'
+        },
+        {
+            'Endpoint': '/dashboard/profile/profile-preferences/edit',
+            'method': 'POST',
+            'body': {
+                'partner': 'string',
+                'location': 'string',
+                'interests': 'string'
+            },
+            'description': 'Updates and returns the profile preferences'
         },
         {
             'Endpoint': '/dashboard/profile/personal-information',
             'method': 'GET',
             'body': None,
-            'description': 'returns an object with personal information belonging to the user'
+            'description': 'Returns an object with personal information belonging to the user'
         },
         {
             'Endpoint': '/dashboard/date-list',
             'method': 'GET',
             'body': None,
-            'description': 'returns an array of all date idea objects belonging to the user'
+            'description': 'Returns an array of all date idea objects belonging to the user'
         },
         {
-            'Endpoint': '/dashboard/date-list/id',
+            'Endpoint': '/dashboard/date-list/<id>',
             'method': 'GET',
             'body': None,
-            'description': 'returns an object of a specific date idea'
+            'description': 'Returns an object of a specific date idea'
+        },
+        {
+            'Endpoint': '/dashboard/date-list/<id>/update',
+            'method': 'POST',
+            'body': {
+                'title': 'string',
+                'description': 'string',
+                'location': 'string',
+                'budget': 'string'
+            },
+            'description': 'Updates and returns an object of the specific date idea'
+        },
+        {
+            'Endpoint': '/delete-account',
+            'method': 'POST',
+            'body': None,
+            'description': 'Deletes user account from database'
         },
     ]
     return Response(routes)
