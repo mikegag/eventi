@@ -8,8 +8,8 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError(_('The Email field must be set'))
         email = self.normalize_email(email)
-        user = self.model(fullname = name, email=email, username=username, **extra_fields)
-        user.set_password(password)  # Hash the password
+        user = self.model(fullname=fullname, email=email, username=username, **extra_fields)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
@@ -34,25 +34,36 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'fullname']
 
     def __str__(self):
         return self.email
 
-class ProfilePreference(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preference')
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preferences')
     partner = models.CharField(max_length=70)
     location = models.CharField(max_length=70)
-    interests = models.TextField()  # Or use a ManyToManyField if interests are predefined choices
+    interests = models.TextField() 
 
     def __str__(self):
-        return f'{self.user.username} Preferences
+        return f'{self.user.username} Preferences'
 
 class DateIdea(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preference')
-    title = models.CharField(max_length=70)
-    description = models.TextField(max_length=70)
-    location = models.CharField(max_length=70)
+    BUDGET_CHOICES = [
+        ('cheap', '$0-$20'),
+        ('medium', '$40-$80'),
+        ('expensive', '$80 or more'),
+    ]
 
-    return self.title,self.description,self.location,
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='date_ideas')
+    title = models.CharField(max_length=70, null=True)
+    description = models.TextField()
+    location = models.CharField(max_length=70)
+    budget = models.CharField(max_length=6, choices=BUDGET_CHOICES)
+    date_created = models.DateTimeField(default=timezone.now)
+    completed = models.bool()
+
+    def __str__(self):
+        return f'{self.title} - {self.description} - {self.location} - {self.budget} - {self.date_created} - {self.completed}'
+
     
