@@ -9,17 +9,13 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
-import environ
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+import dj_database_url
 
-# Initialise environment variables
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-# Reading .env file
-environ.Env.read_env()
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,13 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DJANGO_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DJANGO_DEBUG')
-
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
+# Initialise environment variables
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(',')
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 # Application definition
@@ -89,7 +83,7 @@ WSGI_APPLICATION = "eventi_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db('DATABASE_URL')
+    "default": dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
 
