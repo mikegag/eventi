@@ -1,10 +1,13 @@
-from django.db import models
+# models.py
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+from django.contrib.auth.backends import ModelBackend
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, username, fullname, password=None):
+    def create_user(self, email, username, fullname, password=None, **extra_fields):
         if not email:
             raise ValueError(_('The Email field must be set'))
         if not username:
@@ -12,27 +15,22 @@ class UserManager(BaseUserManager):
         if not fullname:
             raise ValueError(_('The Fullname field must be set'))
 
-        user = self.model(
-            email=self.normalize_email(email),
-            username=username,
-            fullname=fullname,
-        )
-
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username, fullname=fullname, password=password, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, fullname, password=None):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username=username,
-            fullname=fullname,
-            password=password,
-        )
-        user.is_superuser = True
-        user.is_staff = True
-        user.save(using=self._db)
-        return user
+    def create_superuser(self, email, username, fullname, password=None, **extra_fields):
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+
+        return self.create_user(email, username, fullname, password, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
     fullname = models.CharField(max_length=50)
@@ -63,6 +61,19 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class EmailBackend(ModelBackend):
+    def authenticate(self, request, email=None, password=None, **kwargs):
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return None
+        else:
+            if user.check_password(password):
+                return user
+        return None
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preferences')

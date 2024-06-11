@@ -24,12 +24,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# Initialise environment variables
+# Initialise environment variables 
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').strip("[]").split(',')
 DATABASE_URL = os.getenv('DATABASE_URL')
 
+
+CSRF_COOKIE_SECURE = False if DEBUG else True
+
+# Ensure your frontend origin is included in CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
 
 # Application definition
 
@@ -42,18 +47,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "eventi_app",
     "corsheaders",
-    'rest_framework',
+    "rest_framework",
 ]
 
+# Ensure CSRF middleware is included
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "eventi_project.urls"
@@ -133,4 +139,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField" 
 
 #need to change when ready for production
-CORS_ALLOW_ALL_ORIGINS = True
+# Enable CORS
+CORS_ALLOW_ALL_ORIGINS = True if DEBUG else False
+CORS_ALLOW_CREDENTIALS = True
+
+AUTHENTICATION_BACKENDS = [
+    'eventi_app.models.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

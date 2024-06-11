@@ -25,11 +25,11 @@
       },
       "signup": {
         "title": "Let's Get Started",
-        "ids": ["username", "email", "password"],
-        "labels": ["Username", "Email", "Password"],
-        "types": ["text", "email", "password"],
-        "placeholders": ["Enter your username", "Enter your email", "Enter your password"],
-        "icons": ["faUser", "faEnvelope", "faLock"],
+        "ids": ["fullname", "username", "email", "password"],
+        "labels": ["Full Name", "Username", "Email", "Password"],
+        "types": ["text","text", "email", "password"],
+        "placeholders": ["Enter your full name","Enter your username", "Enter your email", "Enter your password"],
+        "icons": ["faSignature", "faUser", "faEnvelope", "faLock"],
         "button": "Sign Up"
       },
       "date": {

@@ -5,22 +5,11 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
-from .models import User, Profile, DateIdea
+from .models import User, Profile, DateIdea, EmailBackend
 from .serializers import DateIdeaSerializer
+from django.views.decorators.csrf import csrf_exempt
 
-def user_login(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        email = data.get('email')
-        password = data.get('password')
-        user = authenticate(request, email=email, password=password)
-        if user is not None:
-            auth_login(request, user)
-            return JsonResponse({'message': 'Login successful'}, status=200)
-        else:
-            return JsonResponse({'error': 'Invalid email or password'}, status=400)
-    return JsonResponse({'message': 'Login page'})  # Example response for GET request
-
+#@csrf_exempt
 def sign_up(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -31,9 +20,30 @@ def sign_up(request):
                 username=data['username'],
                 password=data['password']
             )
+            print(f"User created: {user.email}")
             return JsonResponse({'message': 'User created successfully'}, status=201)
         except Exception as e:
+            print(f"Error creating user: {e}")
             return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+#@csrf_exempt
+def user_login(request):
+    if request.method == 'POST':
+    
+        data = json.loads(request.body)
+        email = data.get('email')
+        password = data.get('password')
+
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            auth_login(request, user)
+            print("Login successful")
+            return JsonResponse({'message': 'Login successful'}, status=200)
+        else:
+            print("Invalid email or password")
+            return JsonResponse({'error': 'Invalid email or password'}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 @login_required
 def get_profile(request):

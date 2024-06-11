@@ -7,7 +7,7 @@ export default function Faqs(){
         <div>
             <h3 className="page-title mb-16">Commonly Asked Questions</h3>
             {data.faqs.questions.map((curr,index)=>(
-                <FaqCard question={curr} answer={data.faqs.answers[index]}/>
+                <FaqCard key={index} question={curr} answer={data.faqs.answers[index]}/>
             ))}
         </div>
     )

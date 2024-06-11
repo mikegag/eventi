@@ -12,7 +12,7 @@ export default function AddIdea(){
         document.title = "Add A Date Idea"
     }, [])
 
-    function handleSubmit (formData: { [key: string]: string }):void {
+    function handleSubmit (event: React.FormEvent, formData: { [key: string]: string }):void {
         console.log('Form data submitted:', formData);
         setIsSubmitted(true)
         // Handle form data submission logic here

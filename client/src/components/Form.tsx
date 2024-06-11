@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import { IconDefinition, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
-import { faCreditCard, faFilePen, faLocationDot, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faCreditCard, faFilePen, faLocationDot, faLock, faSignature } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import formData from '../Data.json'
 
 interface FormProps {
   useCase: string
-  onSubmit: (formData: { [key: string]: string }) => void
+  onSubmit: (event: React.FormEvent<HTMLFormElement>, formData: { [key: string]: string }) => void
 }
 
 interface FormConfig {
@@ -23,6 +23,7 @@ interface FormConfig {
 
 const iconMap: Record<string, IconDefinition> = {
   faEnvelope,
+  faSignature,
   faUser,
   faCreditCard,
   faFilePen,
@@ -43,9 +44,8 @@ export default function Form({ useCase, onSubmit }: FormProps) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // Pass the form data to the parent component
-    onSubmit(formDataState)
-  };
+    onSubmit(event,formDataState)
+  }
 
   function determineUseCase(givenCase: string): FormConfig {
     const formattedUseCase = givenCase.replace(/\s+/g, '').toLowerCase()
@@ -60,7 +60,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
   const formOutput = determineUseCase(useCase)
 
   return (
-    <div className={`mt-10 ${formOutput===formData.formData.date ? 'mt-6 lg:mt-1':''} sm:mx-auto sm:w-full sm:max-w-sm lg:max-w-lg`}>
+    <div className={`mt-7 ${formOutput===formData.formData.date ? 'mt-6 lg:mt-1':''} sm:mx-auto sm:w-full sm:max-w-sm lg:max-w-lg`}>
       <h3 className={`page-title ${formOutput===formData.formData.date ? 'mt-6 lg:mt-1':''}`}>{formOutput.title}</h3>
       <form onSubmit={handleSubmit}>
         {formOutput.ids.map((id, index) => (
@@ -69,7 +69,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
               <FontAwesomeIcon icon={iconMap[formOutput.icons[index]]} className="mr-3 text-base" />
               {formOutput.labels[index]}
             </label>
-            <div className="mt-2">
+            <div className="mt-1">
               {formOutput.types[index] === 'text' ||
               formOutput.types[index] === 'email' ||
               formOutput.types[index] === 'password' ? (
@@ -82,6 +82,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
                   required
                   placeholder={formOutput.placeholders[index]}
                   className="form-input"
+                  autoComplete='on'
                 />
               ) : formOutput.types[index] === 'select' ? (
                 <select
@@ -125,7 +126,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
 
       {formOutput.button === 'Login' ? (
         <>
-          <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
+          <p className="mt-7 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
             Don't have an account?{' '}
             <Link to="/signup">
               <span className="leading-6 hover:text-accent-color-darkyellow underline ml-2">Sign Up</span>
@@ -134,7 +135,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
         </>
       ) : formOutput.button === 'Sign Up' ? (
         <>
-          <p className="mt-10 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
+          <p className="mt-7 font-semibold text-center text-base text-main-color-lightgrey flex justify-center">
             Already have an account?{' '}
             <Link to="/login">
               <span className="leading-6 hover:text-accent-color-darkyellow underline ml-2">Login</span>

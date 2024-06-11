@@ -28,13 +28,13 @@ export default function Landing(){
                         Get Started
                     </motion.button>
                 </Link>
-                <section className="mt-72 mb-36">
+                <section className="mt-72 mb-32 lg:mb-36">
                     <About />
                 </section>
                 <section>
                     <Example />
                 </section>
-                <section className="mt-40 mb-28 w-full">
+                <section className="mt-32 mb-28 w-full lg:mt-40">
                     <Faqs />
                 </section>
             </div>
