@@ -1,12 +1,15 @@
 from django.urls import path
 from . import views
-
+from .views import csrf_token
+ 
 urlpatterns = [
     path('', views.getRoutes, name="routes"),
-    path('login/', views.user_login, name='user_login'),
+    path('csrf_token/', csrf_token, name='csrf_token'),
+    path('login/', views.user_login, name='login'),
     path('signup/', views.sign_up, name='sign_up'),
+    path('logout/', views.user_logout, name='logout'),
     path('dashboard/', views.get_date_ideas, name='dashboard'),
-    path('dashboard/profile/', views.get_profile, name='get_profile'),
+    path('dashboard/profile/', views.get_profile, name='profile'),
     path('dashboard/profile/profile-preferences/', views.get_profile_preferences, name='get_profile_preferences'),
     path('dashboard/profile/profile-preferences/edit/', views.edit_profile_preferences, name='edit_profile_preferences'),
     path('dashboard/profile/personal-information/', views.get_personal_information, name='get_personal_information'),

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate} from "react-router-dom"
 import Header from "../components/Header"
 import Form from "../components/Form"
@@ -6,6 +6,7 @@ import axios from 'axios'
 
 export default function Login(){
     const navigate = useNavigate()
+    const [csrfToken, setCsrfToken] = useState<string | null>(null)
     
     //gets csfr authentication cookie
     function getCookie(name:string) {
@@ -25,11 +26,28 @@ export default function Login(){
 
     useEffect(() => {
         document.title = "Eventi - Login"
+        let csrftoken = getCookie('csrftoken')
+        if (!csrftoken) {
+            axios.get('/api/csrf_token/')
+                .then(res => {
+                    if (res.data.csrfToken) {
+                        csrftoken = res.data.csrfToken
+                        document.cookie = `csrftoken=${csrftoken}; path=/`
+                        setCsrfToken(csrftoken)
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching CSRF token:', error)
+                })
+        } else {
+            setCsrfToken(csrftoken)
+        }
     }, [])
     
     function handleSubmit(event: React.FormEvent, formData: { [key: string]: string }): void {
         event.preventDefault()
         const csrftoken = getCookie('csrftoken')
+        console.log(csrftoken)
         axios.post('/api/login/', formData,{
             headers: {
                 'X-CSRFToken': csrftoken

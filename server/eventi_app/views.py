@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth import logout
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -8,6 +9,11 @@ from django.contrib.auth.decorators import login_required
 from .models import User, Profile, DateIdea, EmailBackend
 from .serializers import DateIdeaSerializer
 from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import get_token
+
+
+def csrf_token(request):
+    return JsonResponse({'csrfToken': get_token(request)})
 
 #@csrf_exempt
 def sign_up(request):
@@ -30,7 +36,7 @@ def sign_up(request):
 #@csrf_exempt
 def user_login(request):
     if request.method == 'POST':
-    
+        
         data = json.loads(request.body)
         email = data.get('email')
         password = data.get('password')
@@ -38,11 +44,22 @@ def user_login(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             auth_login(request, user)
+            request.session['user_id'] = user.id
+            request.session.modified = True
             print("Login successful")
             return JsonResponse({'message': 'Login successful'}, status=200)
         else:
             print("Invalid email or password")
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+#@csrf_exempt
+def user_logout(request):
+    if request.method == 'POST':
+        logout(request)
+        request.session.flush()  # Clears all session data
+        request.session.modified = True
+        return JsonResponse({'message': 'Logout successful'}, status=200)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 @login_required
@@ -54,6 +71,7 @@ def get_profile(request):
             'username': user.username,
             'fullname': user.fullname,
         }
+        request.session.modified = True
         return JsonResponse(profile_data)
 
 @login_required

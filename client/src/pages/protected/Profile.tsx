@@ -1,4 +1,5 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 import Header from "../../components/Header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeftLong, faWrench } from "@fortawesome/free-solid-svg-icons"
@@ -6,8 +7,39 @@ import { faUser } from "@fortawesome/free-regular-svg-icons"
 import { Link } from "react-router-dom"
 
 export default function Profile(){
+    const [profileData, setProfileData] = useState<object>({})
+
+    //gets csfr authentication cookie
+    function getCookie(name:string) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';')
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim()
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+                    break
+                }
+            }
+        }
+        return cookieValue
+    }
+
     useEffect(() => {
         document.title = "Profile"
+        const csrftoken = getCookie('csrftoken')
+        axios.get('/api/dashboard/profile/', {
+            headers: {
+                'X-CSRFToken': csrftoken
+            }
+        })
+        .then(res => {
+        setProfileData(res.data)
+        console.log(res.data)
+        })
+        .catch(err => {
+            console.error("Error fetching profile data:", err)
+        })
     }, [])
 
     return (
@@ -21,7 +53,7 @@ export default function Profile(){
             </Link>
             <div className="profile-upper-container mb-16">
                 <img src={require('../../assets/couple-love.png')} className="w-36 rounded-full border"/>
-                <h4 className="mt-8 mb-3 font-semibold text-3xl">Mark Plum</h4>
+                <h4 className="mt-8 mb-3 font-semibold text-3xl"></h4>
                 <p className="text-sm">Joined January 15, 2024</p>
             </div>  
             <Link to={"personal-information"}>
