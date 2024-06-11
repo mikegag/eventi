@@ -7,6 +7,7 @@ import axios from "axios"
 export default function SignUp(){
     const navigate = useNavigate()
 
+    //gets csfr authentication cookie
     function getCookie(name:string) {
         let cookieValue = null
         if (document.cookie && document.cookie !== '') {
