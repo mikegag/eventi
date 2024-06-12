@@ -3,14 +3,54 @@ import Header from "../../components/Header"
 import LargeButtonCard from "../../components/LargeButtonCard"
 import SmallButtonCard from "../../components/SmallButtonCard"
 import GraphVisualization from "../../components/GraphVisualization"
+import axios from "axios"
 
+interface ApiDataProps {
+    username: string,
+    graphData: []
+}
 export default function Dashboard(){
+    const [apiData, setApiData] = useState<ApiDataProps>({
+        username: '',
+        graphData: []
+    })
+
     const [graphComponent, setGraphComponent] = useState<string>("totalIdeas")
     const [selectedComponent, setSelectedComponent] = useState<boolean[]>([true,false,false])
     const [graphDescription, setGraphDescription] = useState<string>("")
 
+    //gets csfr authentication cookie
+    function getCookie(name:string) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';')
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim()
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+                    break
+                }
+            }
+        }
+        return cookieValue
+    }
+
     useEffect(() => {
         document.title = "Dashboard"
+        const csrftoken = getCookie('csrftoken')
+        axios.get('/api/dashboard/', {
+            headers: {
+                'X-CSRFToken': csrftoken,
+            }
+        })
+        .then(res => {
+            setApiData(res.data)
+            console.log(apiData)
+        })
+        .catch(err => {
+            console.error("Error fetching profile data:", err)
+        })
+
     }, [])
 
     //handles which graph should be displayed based on currently clicked SmallButtonCard
@@ -51,7 +91,9 @@ export default function Dashboard(){
         <>
             <Header useCase="protected"/>
             <div className="mx-auto">
-                <p className="mr-auto ml-0 mt-14 mb-10 text-2xl font-semibold text-main-color-lightgrey underline underline-offset-4">Hi, username</p>
+                <p className="mr-auto ml-0 mt-14 mb-10 text-2xl font-semibold text-main-color-lightgrey underline underline-offset-4">
+                    {apiData.username !== '' ? "Hi, " + apiData.username : "..."}
+                </p>
                 <div className="flex flex-col justify-center mx-auto lg:flex-row lg: mr-8 lg:justify-start">
                     <SmallButtonCard useCase="total" graphData="1002" getComponent ={displayData}  isSelected={selectedComponent[0]}/>
                     <SmallButtonCard useCase="location" graphData="Toronto" getComponent ={displayData} isSelected={selectedComponent[1]}/>

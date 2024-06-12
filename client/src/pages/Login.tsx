@@ -27,9 +27,9 @@ export default function Login(){
 
     //checks if cookies are enabled in browser by setting and removing test cookie
     function areCookiesEnabled(){
-        document.cookie = 'testCookie=1';
-        const cookiesEnabled = document.cookie.indexOf('testCookie=') !== -1;
-        document.cookie = 'testCookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        document.cookie = 'testCookie=1'
+        const cookiesEnabled = document.cookie.indexOf('testCookie=') !== -1
+        document.cookie = 'testCookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT'
 
         return cookiesEnabled
     }

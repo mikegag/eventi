@@ -4,7 +4,7 @@ from .models import User, DateIdea
 class DateIdeaSerializer(serializers.ModelSerializer):
     class Meta:
         model = DateIdea
-        fields = ['id', 'title', 'description', 'location', 'budget']
+        fields = ['id', 'title', 'description', 'location', 'budget', 'date_created', 'completed']
 
 class UserSerializer(serializers.ModelSerializer):
     date_ideas = DateIdeaSerializer(many=True, read_only=True)

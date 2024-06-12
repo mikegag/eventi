@@ -105,6 +105,46 @@ def get_profile(request):
 
 
 #login_required
+def get_dashboard(request):
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+
+            if request.session.session_key and request.method == 'GET':
+                #user_serializer = UserSerializer(user)
+                #date_idea_serializer = DateIdeaSerializer(user.date_ideas.all(), many=True)
+                dashboard_data = {
+                    'username': user.username,
+                    'graph_data': user.date_ideas
+                }
+                return JsonResponse(dashboard_data, safe=False)
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'GET':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return get_dashboard(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
+
+#login_required
 @login_required
 def get_profile_preferences(request):
     if request.method == 'GET':
@@ -187,6 +227,7 @@ def get_hidden_cookie(request):
         data = json.loads(request.body)
         return data.get('user_email')
 
+#needs to be updated
 @api_view(['GET'])
 def getRoutes(request):
 
