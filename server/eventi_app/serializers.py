@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, DateIdea
+from .models import User, DateIdea, Profile
 
 class DateIdeaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +12,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'fullname', 'email', 'username', 'date_joined', 'date_ideas']
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['partner', 'location', 'interests']

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
 from .models import User, Profile, DateIdea, EmailBackend
-from .serializers import DateIdeaSerializer
+from .serializers import DateIdeaSerializer, UserSerializer, ProfileSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token, rotate_token
 from django.shortcuts import redirect
@@ -52,7 +52,6 @@ def user_login(request):
             print("Invalid email or password")
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
-
 
 def user_logout(request):
     if request.method == 'POST':
@@ -103,7 +102,6 @@ def get_profile(request):
         else:
             return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
-
 #login_required
 def get_dashboard(request):
     try:
@@ -145,17 +143,44 @@ def get_dashboard(request):
             return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
 #login_required
-@login_required
 def get_profile_preferences(request):
-    if request.method == 'GET':
-        user = request.user
-        profile_preferences = Profile.objects.get(user=user)
-        preferences_data = {
-            'partner': profile_preferences.partner,
-            'location': profile_preferences.location,
-            'interests': profile_preferences.interests,
-        }
-        return JsonResponse(preferences_data)
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+            profile, created = Profile.objects.get_or_create(user=user)
+
+            if request.session.session_key and request.method == 'GET':
+                profile_preferences = {
+                    'partner': profile.partner,
+                    'location': profile.location,
+                    'interests': profile.interests,
+                }
+                return JsonResponse(profile_preferences)
+            
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'GET':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return get_profile_preferences(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
 @login_required
 def edit_profile_preferences(request):
