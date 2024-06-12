@@ -35,7 +35,9 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 CSRF_COOKIE_SECURE = False if DEBUG else True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_SECURE = False if DEBUG else True
+SESSION_COOKIE_SECURE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Set to True if you want sessions to expire when the browser is closed
+SESSION_COOKIE_AGE = 3600
 
 
 # Ensure your frontend origin is included in CSRF_TRUSTED_ORIGINS
@@ -152,3 +154,5 @@ AUTHENTICATION_BACKENDS = [
     'eventi_app.models.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+LOGIN_REDIRECT_URL = '/dashboard'

@@ -30,7 +30,8 @@ export default function Profile(){
         const csrftoken = getCookie('csrftoken')
         axios.get('/api/dashboard/profile/', {
             headers: {
-                'X-CSRFToken': csrftoken
+                'X-CSRFToken': csrftoken,
+                // 'Authorization': `sessionid ${yourSessionId}`
             }
         })
         .then(res => {

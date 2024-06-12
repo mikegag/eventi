@@ -2,14 +2,17 @@ import json
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import login as auth_login, authenticate
 from django.contrib.auth import logout
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.decorators import login_required
 from .models import User, Profile, DateIdea, EmailBackend
 from .serializers import DateIdeaSerializer
 from django.views.decorators.csrf import csrf_exempt
-from django.middleware.csrf import get_token
+from django.middleware.csrf import get_token, rotate_token
+from django.shortcuts import redirect
+from urllib.parse import urlparse, parse_qs
+
 
 
 def csrf_token(request):
@@ -44,35 +47,64 @@ def user_login(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             auth_login(request, user)
-            request.session['user_id'] = user.id
-            request.session.modified = True
-            print("Login successful")
-            return JsonResponse({'message': 'Login successful'}, status=200)
+ 
+            # print("Login successful", user.id)
+            # return JsonResponse({'message': 'Login successful'}, status=200)
+            response = JsonResponse({'message': 'Login successful'}, status=200)
+            response.set_cookie('user_email', user.email, httponly=True, secure=True)  # Secure=True for production
+            print("Login successful", user.id)
+            return response
         else:
             print("Invalid email or password")
             return JsonResponse({'error': 'Invalid email or password'}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-#@csrf_exempt
+
 def user_logout(request):
     if request.method == 'POST':
         logout(request)
-        request.session.flush()  # Clears all session data
-        request.session.modified = True
-        return JsonResponse({'message': 'Logout successful'}, status=200)
+        request.session.flush()
+        rotate_token(request)
+        #request.session.modified = True
+        response = JsonResponse({'message': 'Logout successful'}, status=200)
+        response.delete_cookie('user_email')
+        return response
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-@login_required
+
 def get_profile(request):
-    if request.method == 'GET':
-        user = request.user
-        profile_data = {
-            'date_joined': user.date_joined,
-            'username': user.username,
-            'fullname': user.fullname,
-        }
-        request.session.modified = True
-        return JsonResponse(profile_data)
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            return JsonResponse({'error': 'Email not found in cookies'}, status=400)
+
+        try:
+            # Fetch the user from the database using the email
+            user = User.objects.get(email=email)
+            logger.debug(f"User found: {user}")
+
+            # Check if the session key exists and the request method is GET
+            if request.session.session_key and request.method == 'GET':
+                profile_data = {
+                    'date_joined': user.date_joined,
+                    'username': user.username,
+                    'fullname': user.fullname,
+                }
+                return JsonResponse(profile_data)
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'GET':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        return JsonResponse({'error': 'An internal error occurred'}, e, status=500)
+
 
 @login_required
 def get_profile_preferences(request):
