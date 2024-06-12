@@ -7,6 +7,7 @@ import axios from 'axios'
 export default function Login(){
     const navigate = useNavigate()
     const [csrfToken, setCsrfToken] = useState<string | null>(null)
+    const [apiData, setApiData] = useState<object>({})
     
     //gets csfr authentication cookie
     function getCookie(name:string) {
@@ -22,6 +23,15 @@ export default function Login(){
             }
         }
         return cookieValue
+    }
+
+    //checks if cookies are enabled in browser by setting and removing test cookie
+    function areCookiesEnabled(){
+        document.cookie = 'testCookie=1';
+        const cookiesEnabled = document.cookie.indexOf('testCookie=') !== -1;
+        document.cookie = 'testCookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+        return cookiesEnabled
     }
 
     useEffect(() => {
@@ -55,7 +65,7 @@ export default function Login(){
         })
             .then(res => {
                 if (res.status === 200) {
-                    const userData = res.data
+                    setApiData(res.data)
                     setTimeout(() => {
                         navigate("/dashboard")
                         console.log("login successful")

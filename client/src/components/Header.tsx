@@ -62,6 +62,7 @@ export default function Header({useCase}:HeaderProps){
     return (
         useCase === 'default'? (
             <div className="header-container">
+                <p id="hidden_user_email" className="hidden absolute opacity-0">s</p>
                 <Link to={'/'} className="w-24 mt-auto mb-auto ml-0 mr-auto cursor-pointer">
                     <img 
                         src={require("../assets/eventi-logo-small.png")} 
@@ -84,6 +85,7 @@ export default function Header({useCase}:HeaderProps){
         :
         (
             <div className="header-container">
+                <p id="hidden_user_email" className="hidden absolute opacity-0">s</p>
                 <Link to={'/dashboard'} className="w-24 mt-auto mb-auto ml-0 mr-auto cursor-pointer">
                     <img 
                         src={require("../assets/eventi-logo-small.png")} 
@@ -112,7 +114,7 @@ export default function Header({useCase}:HeaderProps){
                         Logout
                     </motion.button>
                 </Link>
-        </div>
+            </div>
         )
     )
 }

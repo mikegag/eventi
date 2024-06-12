@@ -18,7 +18,6 @@ from urllib.parse import urlparse, parse_qs
 def csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
-#@csrf_exempt
 def sign_up(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -36,7 +35,6 @@ def sign_up(request):
             return JsonResponse({'error': str(e)}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-#@csrf_exempt
 def user_login(request):
     if request.method == 'POST':
         
@@ -47,12 +45,8 @@ def user_login(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             auth_login(request, user)
- 
-            # print("Login successful", user.id)
-            # return JsonResponse({'message': 'Login successful'}, status=200)
             response = JsonResponse({'message': 'Login successful'}, status=200)
-            response.set_cookie('user_email', user.email, httponly=True, secure=True)  # Secure=True for production
-            print("Login successful", user.id)
+            response.set_cookie('user_email', user.email, httponly=True, secure=True)
             return response
         else:
             print("Invalid email or password")
@@ -65,27 +59,23 @@ def user_logout(request):
         logout(request)
         request.session.flush()
         rotate_token(request)
-        #request.session.modified = True
         response = JsonResponse({'message': 'Logout successful'}, status=200)
         response.delete_cookie('user_email')
         return response
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
-
+#login_required
 def get_profile(request):
     try:
         # Extract the email from the cookie set when user logins
         email = request.COOKIES.get('user_email')
 
         if not email:
-            return JsonResponse({'error': 'Email not found in cookies'}, status=400)
-
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
         try:
-            # Fetch the user from the database using the email
             user = User.objects.get(email=email)
-            logger.debug(f"User found: {user}")
 
-            # Check if the session key exists and the request method is GET
             if request.session.session_key and request.method == 'GET':
                 profile_data = {
                     'date_joined': user.date_joined,
@@ -103,9 +93,18 @@ def get_profile(request):
             return JsonResponse({'error': 'User not found'}, status=404)
     
     except Exception as e:
-        return JsonResponse({'error': 'An internal error occurred'}, e, status=500)
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return get_profile(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
 
+#login_required
 @login_required
 def get_profile_preferences(request):
     if request.method == 'GET':
@@ -181,6 +180,12 @@ def update_date_idea(request, pk):
         idea.save()
 
         return JsonResponse({'message': 'Date idea updated successfully'}, status=200)
+
+def get_hidden_cookie(request):
+    #used to retrieve hidden session cookie when user has cookies disabled
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        return data.get('user_email')
 
 @api_view(['GET'])
 def getRoutes(request):
