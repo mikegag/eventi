@@ -1,21 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Eventi",
+  "name": "Date night made simple.",
   "icons": [
     {
       "src": "eventi-favicon.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "eventi-favicon.png",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "eventi-favicon.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "562x562"
     }
   ],
   "start_url": ".",

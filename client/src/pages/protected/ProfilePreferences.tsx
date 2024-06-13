@@ -37,7 +37,7 @@ export default function ProfilePreferences(){
     }
 
     useEffect(() => {
-        document.title = "Profile"
+        document.title = "Profile Preferences"
         const csrftoken = getCookie('csrftoken')
         axios.get('/api/dashboard/profile/profile-preferences/', {
             headers: {
@@ -73,7 +73,7 @@ export default function ProfilePreferences(){
                     type="text"
                     disabled = {!isOpen? true : false}
                     className={`form-input mb-5 ${!isOpen? 'form-input-alternative':''}`}
-                    placeholder={profileData.partner !== '' ? profileData.partner : "Loading..."}
+                    placeholder={profileData.partner !== '' ? profileData.partner : "-"}
                 /> 
                 <label htmlFor="location" className="form-label">
                     <FontAwesomeIcon icon={faLocationDot} className="mr-3"/>
@@ -84,7 +84,7 @@ export default function ProfilePreferences(){
                     type="text"
                     disabled = {!isOpen? true : false}
                     className={`form-input mb-5 ${!isOpen? 'form-input-alternative':''}`}
-                    placeholder={profileData.location !== '' ? profileData.location : "Loading..."}
+                    placeholder={profileData.location !== '' ? profileData.location : "-"}
                 />
                 <label htmlFor="interests" className="form-label">
                     <FontAwesomeIcon icon={faChampagneGlasses} className="mr-3"/>
@@ -95,7 +95,7 @@ export default function ProfilePreferences(){
                     type="text"
                     disabled = {!isOpen? true : false}
                     className={`form-input ${!isOpen? 'form-input-alternative':''}`}
-                    placeholder={profileData.interests !== '' ? profileData.interests : "Loading..."}
+                    placeholder={profileData.interests !== '' ? profileData.interests : "-"}
                 />
                 {isOpen ? (
                     <button 
