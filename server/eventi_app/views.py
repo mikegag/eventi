@@ -275,13 +275,42 @@ def delete_account(request):
         else:
             return JsonResponse({'error': 'An internal error occurred'}, status=500)
         
-
-@login_required
+#login_required
 def get_date_ideas(request):
-    user = request.user
-    date_ideas = DateIdea.objects.filter(user=user)
-    serializer = DateIdeaSerializer(date_ideas, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+
+            if request.session.session_key and request.method == 'GET':
+                 # Get all date ideas related to the user
+                date_ideas = DateIdea.objects.filter(current_user=user)
+                serializer = DateIdeaSerializer(date_ideas, many=True)
+                return JsonResponse(serializer.data, safe=False)
+            
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'GET':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return get_date_ideas(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
 @login_required
 def get_date_details(request, pk):

@@ -62,7 +62,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-
 class EmailBackend(ModelBackend):
     def authenticate(self, request, email=None, password=None, **kwargs):
         try:
@@ -73,7 +72,6 @@ class EmailBackend(ModelBackend):
             if user.check_password(password):
                 return user
         return None
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_preferences')
