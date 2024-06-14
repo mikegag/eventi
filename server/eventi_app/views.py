@@ -197,23 +197,84 @@ def edit_profile_preferences(request):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
 
-@login_required
+#login_required
 def get_personal_information(request):
-    if request.method == 'GET':
-        user = request.user
-        personal_info = {
-            'username': user.username,
-            'email': user.email,
-            'fullname': user.fullname,
-        }
-        return JsonResponse(personal_info)
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
 
-@login_required
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+            #profile, created = Profile.objects.get_or_create(user=user)
+
+            if request.session.session_key and request.method == 'GET':
+                personal_information = {
+                    'username': user.username,
+                    'email': user.email,
+                    'fullname': user.fullname,
+                }
+                return JsonResponse(personal_information)
+            
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'GET':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return get_personal_information(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
+
+#login_required
 def delete_account(request):
-    if request.method == 'POST':
-        user = request.user
-        user.delete()
-        return JsonResponse({'message': 'Account deleted successfully'}, status=204)
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+
+            if request.session.session_key and request.method == 'POST':
+                request.session.flush()
+                response = JsonResponse({'message': 'Account deleted successfully'}, status=200)
+                response.delete_cookie('user_email')
+                user.delete()
+                return response
+            
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'POST':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return delete_account(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
+        
 
 @login_required
 def get_date_ideas(request):

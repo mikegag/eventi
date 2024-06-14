@@ -41,11 +41,11 @@ body {
   }
   .form-input {
     @apply block w-full rounded-md border-0 px-3 py-2.5 text-accent-color-black shadow-sm ring-1 ring-inset
-         ring-gray-300 placeholder:text-gray-300 placeholder:text-base focus:ring-2 focus:ring-inset 
+         ring-gray-300 placeholder:text-main-color-lightgrey placeholder:text-base focus:ring-2 focus:ring-inset 
            focus:ring-accent-color-darkyellow sm:text-base sm:leading-6;
   }
   .form-input-alternative {
-    @apply bg-main-color-green text-main-color-lightgrey ring-0 border-0 border-b-2 border-main-color-lightgrey 
+    @apply bg-main-color-green text-white ring-0 border-0 border-b-2 border-main-color-lightgrey 
             rounded-none sm:text-base sm:leading-6;
   }
   .form-submit-btn {
