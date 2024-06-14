@@ -65,7 +65,7 @@ export default function Profile(){
                     {profileData.fullname !== ''? profileData.fullname : "Loading..."}
                 </h4>
                 <p className="text-sm">
-                    {profileData.date_joined !== ''? profileData.date_joined.slice(0,10) : "..." }
+                    Joined: {profileData.date_joined !== ''? profileData.date_joined.slice(0,10) : "..." }
                 </p>
             </div>  
             <Link to={"personal-information"}>
