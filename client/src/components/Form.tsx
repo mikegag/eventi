@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { IconDefinition, faEnvelope, faUser } from '@fortawesome/free-regular-svg-icons'
-import { faCreditCard, faFilePen, faLocationDot, faLock, faSignature } from '@fortawesome/free-solid-svg-icons'
+import { faCreditCard, faFilePen, faLayerGroup, faLocationDot, faLock, faSignature } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import formData from '../Data.json'
@@ -28,6 +28,7 @@ const iconMap: Record<string, IconDefinition> = {
   faCreditCard,
   faFilePen,
   faLocationDot,
+  faLayerGroup,
   faLock
 }
 
@@ -113,7 +114,7 @@ export default function Form({ useCase, onSubmit }: FormProps) {
                   onChange={handleChange}
                   required
                   placeholder={formOutput.placeholders[index]}
-                  className="form-input max-h-24 min-h-24"
+                  className="form-input max-h-14 min-h-14"
                 />
               )}
             </div>

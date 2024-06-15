@@ -17,4 +17,5 @@ urlpatterns = [
     path('dashboard/date-list/', views.get_date_ideas, name='get_date_ideas'),
     path('dashboard/date-list/<int:pk>/', views.get_date_details, name='get_date_details'),
     path('dashboard/date-list/<int:pk>/update/', views.update_date_idea, name='update_date_idea'),
+    path('dashboard/add-idea/', views.add_date_idea, name='add_date_idea'),
 ]

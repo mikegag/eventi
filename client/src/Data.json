@@ -34,11 +34,11 @@
       },
       "date": {
         "title": "Add Your Date Details",
-        "ids": ["location", "budget", "description"],
-        "labels": ["Location (City, Country)", "What's your budget?", "What will you do on the date?"],
-        "types": ["text", "select", "textarea"],
-        "placeholders": ["Enter your date location (City, Country)", "", "Enter your date description"],
-        "icons": ["faLocationDot", "faCreditCard", "faFilePen"],
+        "ids": ["location", "budget", "title","description"],
+        "labels": ["Location (City, Country)", "What's your budget?", "Date title", "What will you do on the date?"],
+        "types": ["text","select","text", "textarea"],
+        "placeholders": ["Enter your date location (City, Country)","", "Enter your date title (I.E Coffee at Evo Bakery)", "Enter your date description"],
+        "icons": ["faLocationDot", "faCreditCard","faLayerGroup", "faFilePen"],
         "selectOptions": ["Select your budget", "$0-$20", "$40-$80", "$80 or more"],
         "button": "Save"
       }

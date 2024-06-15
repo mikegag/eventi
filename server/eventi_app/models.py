@@ -84,16 +84,16 @@ class Profile(models.Model):
 
 class DateIdea(models.Model):
     BUDGET_CHOICES = [
-        ('cheap', '$0-$20'),
-        ('medium', '$40-$80'),
-        ('expensive', '$80 or more'),
+         ('$0-$20', '$0-$20'),
+        ('$40-$80', '$40-$80'),
+        ('$80 or more', '$80 or more'),
     ]
 
     current_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=70, null=True)
+    title = models.CharField(max_length=70)
     description = models.TextField()
     location = models.CharField(max_length=70)
-    budget = models.CharField(max_length=9, choices=BUDGET_CHOICES)
+    budget = models.CharField(max_length=60, choices=BUDGET_CHOICES)
     date_created = models.DateTimeField(default=timezone.now)
     completed = models.BooleanField(default=False)
 

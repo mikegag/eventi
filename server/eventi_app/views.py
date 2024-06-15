@@ -312,6 +312,61 @@ def get_date_ideas(request):
         else:
             return JsonResponse({'error': 'An internal error occurred'}, status=500)
 
+#login_required
+def add_date_idea(request):
+    try:
+        # Extract the email from the cookie set when user logins
+        email = request.COOKIES.get('user_email')
+
+        if not email:
+            # If email is not found in cookies, return error
+            return JsonResponse({'error': 'Email not found in cookies'}, status=499)
+        try:
+            user = User.objects.get(email=email)
+
+            if request.session.session_key and request.method == 'POST':
+                # Extracting data from the POST request
+               
+                data = json.loads(request.body)
+                title = data.get('title')
+                budget = data.get('budget')
+                description = data.get('description')
+                location = data.get('location')
+                date_created = data.get('date_created', None)
+                completed = data.get('completed', False)
+     
+                new_date_idea = DateIdea.objects.create(
+                    current_user=user,
+                    title=title,
+                    description=description,
+                    location=location,
+                    budget=budget,
+                    date_created=date_created,
+                    completed=completed
+                )
+
+                # Add new_date_idea to user.date_ideas 
+                user.date_ideas.append(new_date_idea)
+                return JsonResponse({'success': 'Date idea successfully saved'}, status=200)
+            else:
+                if not request.session.session_key:
+                    return JsonResponse({'error': 'Session ID not found'}, status=400)
+                if request.method != 'POST':
+                    return JsonResponse({'error': 'Invalid request method'}, status=400)
+        except User.DoesNotExist:
+            return JsonResponse({'error': 'User not found'}, status=404)
+    
+    except Exception as e:
+        if isinstance(e, JsonResponse) and e.status_code == 499:
+            # If a 400 response is returned, try to retrieve email from hidden cookie set on client side
+            email = get_hidden_cookie(request)
+            if not email:
+                return JsonResponse({'error': 'Email not found in cookies or hidden cookie'}, status=400)
+            # Retry retrieving profile data with the retrieved email
+            return add_date_idea(request)
+        else:
+            return JsonResponse({'error': 'An internal error occurred'}, status=500)
+
 @login_required
 def get_date_details(request, pk):
     user = request.user
@@ -423,6 +478,20 @@ def getRoutes(request):
                 'budget': 'string'
             },
             'description': 'Updates and returns an object of the specific date idea'
+        },
+        {
+            'Endpoint': '/dashboard/add-idea',
+            'method': 'POST',
+            'body': {
+                'current_user': 'object',
+                'title': 'string',
+                'description': 'string',
+                'location': 'string', 
+                'budget': 'string', 
+                'date_created': 'string', 
+                'completed': 'boolean' 
+            },
+            'description': 'Returns a date idea'
         },
         {
             'Endpoint': '/delete-account',

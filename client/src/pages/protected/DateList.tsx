@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Header from "../../components/Header"
 import DollarSymbol from "../../components/DollarSymbol"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeftLong, faDollarSign, faThumbTack } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeftLong, faThumbTack, } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import axios from "axios"
 
@@ -69,16 +69,16 @@ export default function DateList(){
             </Link>
             <h3 className="page-title mt-6 lg:mt-2">Saved Date Ideas</h3>
             <div className="list-container">
-                <Link to={':id'}>
+                <Link to={'/:id'}>
                     <div className="date-list-option"> 
                         <h4 className="max-w-24 md:max-w-56 lg:max-w-72 overflow-clip text-nowrap text-ellipsis">
-                            {dateListData.title}
+                            {dateListData.title? dateListData.title : ""}
                         </h4>
                         <div className="h-6 w-1 bg-accent-color-black rounded-3xl mx-1.5"></div>
                         <div className="flex justify-center items-center">
                             <FontAwesomeIcon icon={faThumbTack} className="text-main-color-green mx-1.5" />
                             <p className="mx-1.5">
-                                {dateListData.location}
+                                {dateListData.location? dateListData.location : ""}
                             </p>
                         </div>
                         <div className="h-6 w-1 bg-accent-color-black rounded-3xl mx-1.5"></div>
