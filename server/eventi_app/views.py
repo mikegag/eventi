@@ -14,7 +14,6 @@ from django.shortcuts import redirect
 from urllib.parse import urlparse, parse_qs
 
 
-
 def csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
